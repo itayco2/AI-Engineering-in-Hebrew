@@ -130,6 +130,12 @@ def recursive(
 
     Paragraph breaks first, then line breaks, then sentences, then words, then characters.
     The result respects sentence boundaries wherever the size budget allows it to.
+
+    Note that `overlap` is **additive**: `size` bounds the new content in each chunk, and the
+    overlap is prepended on top of it, so a chunk can be up to roughly `size + overlap`
+    characters. `fixed` behaves the other way round - there `size` is the hard ceiling and the
+    overlap comes out of it. If you are sizing chunks against a model's context window, budget
+    for `size + overlap` here.
     """
     _validate(size, overlap)
     if not text:

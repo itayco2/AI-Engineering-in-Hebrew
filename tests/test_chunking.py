@@ -108,3 +108,20 @@ def test_by_structure_splits_a_paragraph_that_is_too_long():
 def test_chunk_len_is_its_text_length():
     chunk = Chunk(text="four", start=0, end=4, index=0)
     assert len(chunk) == 4
+
+
+def test_recursive_overlap_is_additive_not_carved_out():
+    """Pinned because it differs from `fixed` and the difference matters when sizing chunks
+    against a model's context window: here a chunk can reach about size + overlap."""
+    text = ("Alpha sentence one. Alpha sentence two. Alpha sentence three. "
+            "Beta sentence one. Beta sentence two. Beta sentence three.")
+    chunks = recursive(text, size=60, overlap=30)
+    assert max(len(c) for c in chunks) > 60
+    assert max(len(c) for c in chunks) <= 60 + 30
+    # and the overlap is real: consecutive chunks share text
+    assert chunks[1].start < chunks[0].end
+
+
+def test_fixed_overlap_is_carved_out_of_size():
+    """The contrast that makes the note on `recursive` worth reading."""
+    assert all(len(c) <= 60 for c in fixed("z" * 300, size=60, overlap=30))

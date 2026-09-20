@@ -116,3 +116,38 @@ def save(fig, path: str) -> str:
     fig.savefig(path, bbox_inches="tight", facecolor="white")
     plt.close(fig)
     return path
+
+
+def climb(results: Mapping[str, float], label: str = "recall@1", title: str = ""):
+    """A metric where higher is better, step by step.
+
+    The companion to `staircase`. Some improvements show up as a failure rate falling and
+    others as a hit rate rising, and a chapter that only draws one of them teaches half of
+    what it measured.
+    """
+    import matplotlib.pyplot as plt
+
+    fig, ax = _axes()
+    names = list(results)
+    values = [results[name] * 100 for name in names]
+    best = max(values) if values else 1.0
+
+    colours = [MUTED] * max(len(values) - 1, 0) + [ACCENT]
+    bars = ax.bar(names, values, color=colours[: len(values)], width=0.6)
+    for bar, value in zip(bars, values):
+        ax.text(
+            bar.get_x() + bar.get_width() / 2,
+            value + best * 0.03,
+            f"{value:.1f}%",
+            ha="center",
+            color=INK,
+            fontsize=10,
+        )
+
+    ax.set_ylabel(f"{label}  (higher is better)")
+    ax.set_ylim(0, best * 1.22 if best else 1.0)
+    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0f}%"))
+    if title:
+        ax.set_title(title, color=INK)
+    fig.tight_layout()
+    return fig

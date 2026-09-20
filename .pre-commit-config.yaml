@@ -1,0 +1,27 @@
+# Notebook output never enters a diff. Committed outputs turn every review into thousands of
+# lines of JSON churn, and the site is the only place outputs need to exist - the docs build
+# executes the notebooks and produces them there.
+repos:
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.8.1
+    hooks:
+      - id: nbstripout
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+        args: ["--maxkb=512"]
+
+  - repo: local
+    hooks:
+      - id: check-rtl
+        name: Hebrew writing rules no stylesheet can fix
+        entry: python scripts/check_rtl.py
+        language: system
+        pass_filenames: false
+        files: '\.(md|ipynb)$'

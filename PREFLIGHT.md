@@ -34,8 +34,12 @@ caught. `aihe.embeddings.cross_encoder_scorer` now raises rather than returning 
 | plain embeddings | 0.571 | 0.768 | 0.708 | 23.2% |
 | + context prepended | 0.679 | 0.893 | 0.817 | 10.7% |
 | + BM25 fused in (RRF) | 0.786 | 0.911 | 0.876 | 8.9% |
-| + reranker (top 5) | **0.821** | 0.911 | — | 8.9% |
+| + reranker (top 5) | **0.821** | 0.911 | **0.892** | 8.9% |
 | *BM25 alone* | *0.643* | *0.732* | *0.710* | *26.8%* |
+
+Read the nDCG column alongside recall: reranking moves nDCG@3 from `0.876` to `0.892` and
+recall@1 from `0.786` to `0.821`, while leaving recall@3 and failed@3 untouched. That is the
+signature of a step that reorders rather than retrieves.
 
 The two halves of that table say different things, and the chapter says both. Prepending
 context fixes **misses** — documents that were never retrieved at all. Fusing BM25 and

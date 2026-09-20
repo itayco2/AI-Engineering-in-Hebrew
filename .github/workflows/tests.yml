@@ -1,0 +1,32 @@
+# Tier 1: the fast suite. Blocking, owns the badge, must stay under a minute.
+#
+# It installs requirements-test.txt and nothing else. No torch, no sentence-transformers, no
+# jupyter. That is possible only because all logic lives in aihe/ rather than in notebook
+# cells, and it is why this badge is worth trusting: a check that takes twenty minutes and
+# flakes is worse than no check at all.
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  fast:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+      - run: pip install -r requirements-test.txt
+      - run: pip install -e . --no-deps
+      - name: pure functions, the chapter contract, terminology drift
+        run: pytest tests chapters -m "not needs_model and not slow"
+      - name: Hebrew writing rules that no stylesheet can fix
+        run: python scripts/check_rtl.py

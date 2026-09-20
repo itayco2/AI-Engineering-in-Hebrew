@@ -84,6 +84,19 @@ it returns nothing.
 | notebook | `notebook` | מחברת | מחברת is good Hebrew — **permitted** |
 | repository / repo | `repo` | מאגר | מאגר permitted for a data store, `repo` for git |
 
+| RAG | `RAG` | אחזור מוגבר · ייצור מבוסס אחזור | The acronym is the name of the technique |
+| pipeline | `pipeline` | צינור · שרשרת עיבוד | צינור is plumbing; nobody says it about software here |
+| API | `API` · `API key` | ממשק תכנות | Universally spoken as the English acronym |
+| GPU | `GPU` | מעבד גרפי | Spoken as the acronym |
+| cross-encoder | `cross-encoder` | מקודד צולב | Coinage; the architecture has an English name |
+| contextual retrieval | `contextual retrieval` | אחזור מבוסס הקשר | Anthropic's name for a specific technique — a proper noun |
+| reciprocal rank fusion | `RRF` · `reciprocal rank fusion` | מיזוג דירוגים הופכי | Algorithm name |
+| credentials | `credentials` | פרטי התחברות | פרטי התחברות is fine in flowing prose; the English when naming the field |
+| identifier | `identifier` | מזהה | מזהה is good Hebrew — **permitted in prose**; the English when labelling a question kind |
+| paraphrase | `paraphrase` | ניסוח מחדש | Used here as a label for a kind of question, so it stays one word |
+| mixed | `mixed` | מעורב | Label for a kind of question |
+| Meridian | `Meridian` | — | The invented product in chapter 01's corpus, not a real thing |
+
 ## Stays Hebrew — these are ordinary Hebrew words
 
 | English | Used as | Note |

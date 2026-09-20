@@ -1,0 +1,7 @@
+# The RTL site. MkDocs Material is the reason this is two days of work rather than two weeks:
+# `language: he` with `direction: rtl` mirrors the whole layout - navigation, sidebar, table
+# of contents, search - not merely the text alignment. Docusaurus and VitePress need that
+# mirroring hand-built.
+mkdocs==1.6.1
+mkdocs-material==9.7.7
+mkdocs-jupyter==0.26.3

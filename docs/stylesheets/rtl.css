@@ -1,0 +1,97 @@
+/* The isolation layer. The most important file on this site.
+ *
+ * Material already mirrors the layout for `direction: rtl`. The work that remains is bidi
+ * isolation of inline code inside Hebrew paragraphs: neutral characters - punctuation,
+ * slashes, brackets, a trailing full stop - sit at a script boundary and attach themselves
+ * to the wrong run. Without the rules below, `recall@20` scrambles, `aihe/retrieval.py` puts
+ * its slash on the wrong side, and a sentence-ending period lands on the left.
+ */
+
+/* `unicode-bidi: isolate` is the CSS equivalent of wrapping a run in U+2068 FSI / U+2069 PDI.
+ * It is the correct primitive here; reserve `isolate-override` for stubborn cases. */
+.md-typeset code,
+.md-typeset kbd,
+.md-typeset samp {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* Code blocks are never mirrored - a mirrored diff is unreadable. */
+.md-typeset pre,
+.md-typeset pre > code,
+.md-typeset .highlight,
+.md-typeset .highlighttable {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: isolate;
+}
+
+/* Each cell takes its direction from its own first strong character, which is exactly right
+ * for the tables in this repo: English identifiers in one column, Hebrew in the next. */
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  unicode-bidi: plaintext;
+}
+
+/* A URL is an LTR run that must not drag the line it sits in. */
+.md-typeset a[href^="http"] {
+  unicode-bidi: isolate;
+}
+
+/* ---- notebooks -------------------------------------------------------------------------
+ * nbconvert's output does not reliably inherit the page direction. Without this block, every
+ * chapter renders left-to-right on a right-to-left site, which is the single most likely
+ * "why does the site look broken" bug in this project. */
+.jp-RenderedMarkdown,
+.jp-MarkdownOutput {
+  direction: rtl;
+  text-align: right;
+}
+
+.jp-RenderedMarkdown code,
+.jp-MarkdownOutput code {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.jp-RenderedMarkdown table th,
+.jp-RenderedMarkdown table td {
+  unicode-bidi: plaintext;
+}
+
+/* Program output and source are English and numeric: keep them left-to-right. */
+.jp-OutputArea,
+.jp-RenderedText,
+.jp-OutputArea-output,
+.jp-InputArea,
+.jp-CodeMirrorEditor,
+.highlight-ipynb {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Figures are generated with English labels (matplotlib does no bidi shaping), so centre
+ * them rather than letting them inherit a text alignment. */
+.jp-RenderedImage,
+.jp-OutputArea-output img {
+  direction: ltr;
+  text-align: center;
+}
+
+/* ---- reading comfort ------------------------------------------------------------------ */
+.md-typeset {
+  line-height: 1.75;
+}
+
+/* Hebrew has no capitals and no serifs to lean on, so headings need the weight. */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  font-weight: 700;
+}
+
+@media screen and (max-width: 76.1875em) {
+  .md-typeset {
+    font-size: 0.85rem;
+  }
+}

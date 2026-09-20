@@ -1,0 +1,72 @@
+site_name: הנדסת AI בעברית
+site_description: קורס חופשי ורץ בהנדסת AI מודרנית, בעברית
+site_url: https://itayco2.github.io/AI-Engineering-in-Hebrew/
+repo_url: https://github.com/itayco2/AI-Engineering-in-Hebrew
+repo_name: itayco2/AI-Engineering-in-Hebrew
+edit_uri: ""
+
+theme:
+  name: material
+  language: he          # translates the interface strings
+  direction: rtl        # mirrors the entire layout, not just text alignment
+  features:
+    - navigation.instant
+    - navigation.top
+    - content.code.copy
+    - search.highlight
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: black
+      accent: red
+      toggle: { icon: material/weather-night, name: מצב כהה }
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: red
+      toggle: { icon: material/weather-sunny, name: מצב בהיר }
+
+extra_css:
+  - stylesheets/rtl.css
+
+plugins:
+  # Hebrew is not a supported search language: lunr has no Hebrew stemmer, and MkDocs falls
+  # back to English silently. Declared as English so the fallback is deliberate rather than a
+  # surprise in the build log. Search still finds Hebrew strings, it just does not stem them.
+  - search:
+      lang: [en]
+  - mkdocs-jupyter:
+      # Executed at build time, on purpose. Outputs are stripped from git (nbstripout in
+      # pre-commit) because committed outputs make every diff thousands of lines of JSON
+      # churn -- but a chapter without its figures and tables is a chapter that shows the
+      # code and hides the result. The site is the one place outputs need to exist, so the
+      # site is where they are produced.
+      execute: true
+      include_source: true    # every chapter is downloadable and runnable
+      ignore_h1_titles: true
+
+markdown_extensions:
+  - attr_list        # lets a block be marked {dir=ltr} without raw HTML
+  - md_in_html       # markdown inside the <div dir="rtl"> wrappers
+  - tables
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+
+exclude_docs: |
+  chapters/*/README.md
+  chapters/*/data/
+  chapters/*/tests/
+  chapters/*/cassettes/
+  chapters/*/meta.yml
+
+nav:
+  - הקורס: index.md
+  - התקנה: setup.md
+  - "פרק 01 — RAG מאפס":
+      - הפרק: chapters/01-rag/chapter.ipynb
+      - שאלות ריאיון: chapters/01-rag/interview.md
+  - מילון המונחים: TERMS.md
+  - איך נמדדו המספרים: PREFLIGHT.md
+  - לתרום לקורס: CONTRIBUTING.md

@@ -1,0 +1,25 @@
+id: "01-rag"
+title_he: "RAG מאפס"
+title_en: "RAG from scratch"
+# No generation at all: this chapter is retrieval and arithmetic. That is why it runs on any
+# laptop with no Ollama, no GPU and no RAM floor, and why CI can execute it for real rather
+# than from a recording.
+needs_llm: false
+ram_gb: 2
+est_minutes: 25
+datasets:
+  - "data/meridian.json"
+models:
+  - "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+  - "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+terms:
+  - embedding
+  - chunk
+  - chunking
+  - retrieval
+  - reranker
+  - recall
+  - precision
+  - BM25
+  - RRF
+headline: "recall@1 climbs 0.571 -> 0.821 across four steps"

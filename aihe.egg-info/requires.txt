@@ -1,0 +1,14 @@
+
+[chapters]
+sentence-transformers>=5.0
+matplotlib>=3.9
+numpy>=2.0
+datasets>=4.0
+
+[dev]
+pytest>=8
+pydantic>=2
+PyYAML>=6
+nbmake>=1.5
+ipykernel>=6
+nbstripout>=0.7

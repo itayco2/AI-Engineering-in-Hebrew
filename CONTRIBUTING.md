@@ -49,6 +49,10 @@ pain. `scripts/check_rtl.py` enforces the mechanical ones.
   running Hebrew text puts the arrow and the percent signs in the wrong places.
 - **Gloss a term once, then use one form.** First use may be `Hebrew (English)`; after that, the
   form in `TERMS.md` and nothing else.
+- **Every RTL block needs `markdown="1"`** — `<div dir="rtl" lang="he" align="right" markdown="1">`.
+  Without that attribute the `md_in_html` extension leaves the contents alone, and the whole
+  block renders as literal text: visible hashes, pipes and link brackets. It looks like the
+  site is broken rather than like a missing attribute, so `scripts/check_rtl.py` checks for it.
 - Read `TERMS.md` before writing a sentence. It is the style spine, and the build checks it.
 
 ## Numbers

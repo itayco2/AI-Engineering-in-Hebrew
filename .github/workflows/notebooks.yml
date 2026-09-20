@@ -1,0 +1,39 @@
+# Tier 2: every chapter actually executes. Blocking, target under five minutes.
+#
+# nbmake, not nbval. nbval compares cell outputs against committed ones, and generated text
+# is not reproducible even at temperature 0 with a fixed seed, so that would mean a
+# permanently red build. nbmake asserts only that the notebook ran without raising, which is
+# the one property that survives.
+#
+# Real embedding models run here, because embeddings ARE deterministic and they are the
+# substance of chapters 01-03. Anything needing generation reads a committed cassette.
+name: notebooks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    env:
+      AIHE_BACKEND: replay
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: cache the embedding models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-${{ hashFiles('chapters/*/meta.yml') }}
+          restore-keys: hf-
+      - run: pip install -r requirements.txt -r requirements-test.txt -r requirements-notebooks.txt
+      - run: pip install -e . --no-deps
+      - name: the gate
+        run: python scripts/gate.py
+      - name: execute every chapter
+        run: pytest --nbmake chapters/*/chapter.ipynb

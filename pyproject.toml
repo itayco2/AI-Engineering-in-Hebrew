@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aihe"
+version = "0.1.0"
+description = "AI Engineering in Hebrew - the code behind the chapters"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Itay Cohen" }]
+keywords = ["rag", "retrieval", "hebrew", "llm", "education"]
+classifiers = [
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Natural Language :: Hebrew",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+# Deliberately empty. The package's pure functions - chunking, BM25, RRF, the metrics,
+# the validators - need nothing but the standard library, which is what lets the fast test
+# suite run in under a second. Everything heavier is an extra.
+dependencies = []
+
+[project.optional-dependencies]
+chapters = ["sentence-transformers>=5.0", "matplotlib>=3.9", "numpy>=2.0", "datasets>=4.0"]
+dev = ["pytest>=8", "pydantic>=2", "PyYAML>=6", "nbmake>=1.5", "ipykernel>=6", "nbstripout>=0.7"]
+
+[project.urls]
+Homepage = "https://github.com/itayco2/AI-Engineering-in-Hebrew"
+Source = "https://github.com/itayco2/AI-Engineering-in-Hebrew"
+
+[tool.setuptools.packages.find]
+include = ["aihe*"]
+
+[tool.setuptools.package-data]
+aihe = ["py.typed"]

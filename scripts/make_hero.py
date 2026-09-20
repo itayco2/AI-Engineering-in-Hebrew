@@ -30,6 +30,9 @@ from aihe.retrieval import BM25, tokenize
 
 OUT = ROOT / "docs" / "assets" / "staircase.png"
 
+# About 1200 pixels across. Below that a social platform upscales the chart and it looks soft.
+POST_DPI = 180
+
 
 def main() -> int:
     corpus = load_corpus(ROOT / "chapters/01-rag/data/meridian.json")
@@ -66,6 +69,7 @@ def main() -> int:
             title="how often the right document comes back first",
         ),
         str(OUT),
+        dpi=POST_DPI,
     )
     print(f"wrote {OUT.relative_to(ROOT)}")
     for name, value in results.items():

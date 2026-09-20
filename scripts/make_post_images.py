@@ -19,6 +19,9 @@ from aihe import viz  # noqa: E402
 
 OUT = ROOT / "docs" / "assets"
 
+# About 1200 pixels across. Below that a social platform upscales the chart and it looks soft.
+POST_DPI = 180
+
 
 def chapter_03() -> dict[str, float]:
     from aihe.judge import build_cases, judge_cases
@@ -69,18 +72,18 @@ def main() -> int:
 
     viz.save(viz.climb(chapter_03(), label="pairs separated correctly",
                        title="which judge can tell a good answer from a bad one"),
-             str(OUT / "judges.png"))
+             str(OUT / "judges.png"), dpi=POST_DPI)
     print("wrote docs/assets/judges.png")
 
     viz.save(viz.climb({"summarised": 0 / 6, "capped": 4 / 6, "keep everything": 4 / 6},
                        label="facts recalled out of six",
                        title="what each context strategy remembered"),
-             str(OUT / "context.png"))
+             str(OUT / "context.png"), dpi=POST_DPI)
     print("wrote docs/assets/context.png")
 
     viz.save(viz.climb(chapter_05(), label="valid on the first try",
                        title="the same tool and the same tasks - only our choices change"),
-             str(OUT / "toolcalls.png"))
+             str(OUT / "toolcalls.png"), dpi=POST_DPI)
     print("wrote docs/assets/toolcalls.png")
     return 0
 

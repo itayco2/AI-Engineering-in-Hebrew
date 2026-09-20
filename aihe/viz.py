@@ -109,11 +109,16 @@ def chunk_sizes(distributions: Mapping[str, Sequence[int]], title: str = ""):
     return fig
 
 
-def save(fig, path: str) -> str:
-    """Write a figure and close it, so a long notebook does not leak memory."""
+def save(fig, path: str, dpi: int | None = None) -> str:
+    """Write a figure and close it, so a long notebook does not leak memory.
+
+    `dpi` overrides the figure's own resolution. A chart headed for a social post needs about
+    1200 pixels across or the platform upscales it and it looks soft; inside a page the
+    default is fine.
+    """
     import matplotlib.pyplot as plt
 
-    fig.savefig(path, bbox_inches="tight", facecolor="white")
+    fig.savefig(path, bbox_inches="tight", facecolor="white", dpi=dpi)
     plt.close(fig)
     return path
 

@@ -42,7 +42,7 @@ rtl:  ## check the Hebrew writing rules that no stylesheet can fix
 docs:  ## build the RTL site
 	$(PY) -m mkdocs build --strict
 
-docs-serve:  ## the RTL site, locally, on $(PORT)
+docs-serve:  ## the RTL site, locally (PORT=8000 by default)
 	$(PY) -m mkdocs serve -a 127.0.0.1:$(PORT)
 
 clean:  ## remove build and cache directories

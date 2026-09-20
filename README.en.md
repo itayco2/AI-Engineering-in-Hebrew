@@ -41,4 +41,5 @@ make setup && make run-01
 
 ## Licence
 
-Code is MIT. Prose, chapters and figures are CC BY-SA 4.0. See [LICENSE](LICENSE).
+Code is MIT, in [LICENSE](LICENSE). Prose, chapters, figures and the data written for
+this repository are CC BY-SA 4.0, in [LICENSE-CONTENT](LICENSE-CONTENT).

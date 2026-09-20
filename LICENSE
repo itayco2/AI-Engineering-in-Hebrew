@@ -1,7 +1,3 @@
-This repository is licensed in two parts, because code and teaching want different terms.
-
-================================================================================
-CODE  (aihe/, scripts/, tests/, Makefile, configuration, every .py file)
 MIT License
 
 Copyright (c) 2026 Itay Cohen
@@ -23,18 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-================================================================================
-PROSE, CHAPTERS, FIGURES AND DATA
-Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
-
-Copyright (c) 2026 Itay Cohen
-
-You are free to share and adapt this material for any purpose, including
-commercially, provided you give appropriate credit and distribute your
-contributions under the same licence.
-
-Full text: https://creativecommons.org/licenses/by-sa/4.0/legalcode
-
-Why ShareAlike: Hebrew technical writing is scarce enough that an improvement
-to it should stay available to the next person who needs it.

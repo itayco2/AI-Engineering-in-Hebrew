@@ -41,7 +41,14 @@ jobs:
       - run: pip install --no-cache-dir -r requirements.txt -r requirements-test.txt -r requirements-docs.txt
       - run: pip install -e . --no-deps
       - name: build, and fail on a broken internal link
+        # The chapters are executed at build time. Without this the notebooks reach for a
+        # model that is not running, and mkdocs-jupyter embeds the traceback in the page
+        # while the build still reports success.
+        env:
+          AIHE_BACKEND: replay
         run: mkdocs build --strict
+      - name: no chapter may publish a traceback
+        run: python scripts/check_site.py
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main'
         with:

@@ -72,11 +72,12 @@ record:  ## re-record cassettes from a real model, then review the diff
 rtl:  ## check the Hebrew writing rules that no stylesheet can fix
 	$(PY) scripts/check_rtl.py
 
-docs:  ## build the RTL site
-	$(PY) -m mkdocs build --strict
+docs:  ## build the RTL site, then check that no chapter published a traceback
+	AIHE_BACKEND=replay $(PY) -m mkdocs build --strict
+	$(PY) scripts/check_site.py
 
 docs-serve:  ## the RTL site, locally (PORT=8000 by default)
-	$(PY) -m mkdocs serve -a 127.0.0.1:$(PORT)
+	AIHE_BACKEND=replay $(PY) -m mkdocs serve -a 127.0.0.1:$(PORT)
 
 clean:  ## remove build and cache directories
 	$(PY) scripts/clean.py

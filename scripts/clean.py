@@ -6,7 +6,10 @@ import shutil
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-TARGETS = ("site", ".pytest_cache", ".ipynb_checkpoints")
+# .cache holds mkdocs-jupyter's executed-notebook cache. A stale entry there silently ships
+# an older version of a chapter to the site - figures missing, numbers from a previous run -
+# while the build reports success in under a second.
+TARGETS = ("site", ".pytest_cache", ".ipynb_checkpoints", ".cache")
 
 
 def main() -> int:

@@ -93,3 +93,14 @@ Defect 11 is the one that matters most for a repository whose whole argument is 
 measures things. The claim was plausible, it was in the right shape, it cited a real source —
 and it was about this chapter's own data, which had said something else. Nothing but a test
 comparing the headline to the measurement was ever going to catch it.
+
+| # | what was wrong | the number that showed it | fix | the number after |
+|---|---|---|---|---|
+| 15 | **Three chapters published error tracebacks to the site.** The docs build executes every notebook, but without `AIHE_BACKEND=replay` they reached for a model that was not running. `mkdocs-jupyter` caught the exception, embedded the traceback in the page, and the build reported success | **6 error outputs** on chapter 03's published page, headed `ConnectionRefusedError`, while `mkdocs build --strict` exited 0, `nbmake` passed and every test was green | set the backend for the docs build, and add `scripts/check_site.py`, which fails if any published chapter contains a traceback or has no output at all | chapters 03-05: **0 errors**; chapter 03 went from 2 figures to 3 |
+| 16 | **Every chart was displayed twice.** A figure returned as a cell's value is rendered once as `execute_result` and again as `display_data` from the inline backend | two `image/png` outputs per `viz` call, in all five chapters | a trailing semicolon suppresses the returned value | one figure per call |
+
+Defect 15 is the most alarming in this file, because **every other check was green when it
+shipped**. The tests passed, the notebooks passed under `nbmake`, the build passed under
+`--strict`, and the page a reader would open was full of red tracebacks. A build that executes
+something and then swallows the failure is worse than one that does not execute it at all, and
+the only defence is to check the artefact you actually publish.

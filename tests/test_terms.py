@@ -68,3 +68,58 @@ def test_chapter_prose_terms_are_declared(chapter):
             if not _is_declared(t, declared)
         }
     assert not undeclared, f"{chapter.name}: undeclared terms {sorted(undeclared)}"
+
+
+# --- punctuation that reads as machine-written ------------------------------------------
+
+# Referenced by code point rather than written out, so this file does not contain the very
+# characters it forbids.
+MACHINE_MARKS = {
+    chr(0x2014): "em dash: use a comma, a colon, or two sentences",
+    chr(0x2013): "en dash: use a hyphen in ranges and a comma in prose",
+    chr(0x2026): "ellipsis character: write three dots",
+    chr(0x2018): "curly quote: use a straight one",
+    chr(0x2019): "curly quote: use a straight one",
+    chr(0x201C): "curly quote: use a straight one",
+    chr(0x201D): "curly quote: use a straight one",
+}
+
+AUTHORED = (".md", ".py", ".ipynb", ".yml", ".yaml", ".toml")
+
+
+def _authored_files():
+    for path in sorted(ROOT.rglob("*")):
+        if not path.is_file() or path.suffix not in AUTHORED:
+            continue
+        if set(path.parts) & {".venv", ".git", "site", ".cache"} or "cassettes" in path.parts:
+            continue
+        # data/ holds a third-party corpus. It is quoted, not composed, so it is quoted exactly.
+        if path.suffix == ".json" and "data" in path.parts:
+            continue
+        yield path
+
+
+def test_no_machine_punctuation_in_authored_files():
+    """These marks are what made the docs read as machine-written. The corpus and the
+    cassettes are exempt: they are evidence, and evidence is reproduced verbatim."""
+    offences = []
+    for path in _authored_files():
+        text = path.read_text(encoding="utf-8", errors="replace")
+        for mark, why in MACHINE_MARKS.items():
+            if mark in text:
+                offences.append(f"{path.relative_to(ROOT)}: U+{ord(mark):04X} {why}")
+    assert not offences, "\n  " + "\n  ".join(sorted(set(offences))[:20])
+
+
+def test_no_decorative_emoji_in_authored_files():
+    import re
+
+    emoji = re.compile(
+        f"[{chr(0x1F300)}-{chr(0x1FAFF)}{chr(0x2728)}{chr(0x2705)}{chr(0x274C)}{chr(0x2B50)}]"
+    )
+    offences = [
+        str(path.relative_to(ROOT))
+        for path in _authored_files()
+        if emoji.search(path.read_text(encoding="utf-8", errors="replace"))
+    ]
+    assert not offences, f"decorative emoji in: {offences}"

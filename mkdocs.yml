@@ -64,19 +64,19 @@ exclude_docs: |
 nav:
   - הקורס: index.md
   - התקנה: setup.md
-  - "פרק 01 — RAG מאפס":
+  - "פרק 01. RAG מאפס":
       - הפרק: chapters/01-rag/chapter.ipynb
       - שאלות ריאיון: chapters/01-rag/interview.md
-  - "פרק 02 — RAG בעברית":
+  - "פרק 02. RAG בעברית":
       - הפרק: chapters/02-hebrew-rag/chapter.ipynb
       - שאלות ריאיון: chapters/02-hebrew-rag/interview.md
-  - "פרק 03 — איך יודעים שזה עובד":
+  - "פרק 03, איך יודעים שזה עובד":
       - הפרק: chapters/03-evals/chapter.ipynb
       - שאלות ריאיון: chapters/03-evals/interview.md
-  - "פרק 04 — הנדסת הקשר":
+  - "פרק 04, הנדסת הקשר":
       - הפרק: chapters/04-context/chapter.ipynb
       - שאלות ריאיון: chapters/04-context/interview.md
-  - "פרק 05 — סוכנים":
+  - "פרק 05, סוכנים":
       - הפרק: chapters/05-agents/chapter.ipynb
       - שאלות ריאיון: chapters/05-agents/interview.md
   - מילון המונחים: TERMS.md

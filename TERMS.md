@@ -1,19 +1,19 @@
-# TERMS — the terminology spine
+# TERMS: the terminology spine
 
 Every Hebrew chapter in this repo uses the forms in the table below. Nothing else. If a term
 is missing, add it here **first**, then use it. `tests/test_terms.py` fails the build when a
 notebook uses a Hebrew technical term that this file does not define.
 
 This file exists because there is no settled Hebrew register for modern AI engineering, and
-without a written policy the same concept acquires three names across three chapters — which
+without a written policy the same concept acquires three names across three chapters, which
 is the fastest way for Hebrew technical writing to look amateur.
 
-## The policy — three rules, in order
+## The policy: three rules, in order
 
 **1. English technical terms stay English, in backticks.**
 Hebrew grammar wraps around them: `ה-embedding של כל chunk`, `ה-reranker מסדר מחדש`. This is
 how Israeli engineers actually write and speak. It keeps terms searchable, it lets a reader
-move straight to the English documentation, and — not a small thing — each backticked English
+move straight to the English documentation, and, not a small thing, each backticked English
 run becomes an LTR island that the RTL stylesheet can isolate, so it *helps* the bidi problem
 instead of adding to it.
 
@@ -29,18 +29,18 @@ working Israeli engineer already uses without thinking.
 ### Why rule 3 matters more than it looks
 
 The Academy of the Hebrew Language's term database returns **seven** Hebrew equivalents for
-"embedding" — שִׁעְבּוּד (linguistics, 2022), שִׁבּוּץ (communications, 2012), שִׁקּוּעַ
+"embedding", שִׁעְבּוּד (linguistics, 2022), שִׁבּוּץ (communications, 2012), שִׁקּוּעַ
 (histology/dentistry), תִּיכוּךְ (microbiology), שִׁכּוּן (chemical engineering), כְּלִיאָה
-(microelectronics) — **and not one of them is the machine-learning sense.** The 2022 linguistics
+(microelectronics), **and not one of them is the machine-learning sense.** The 2022 linguistics
 entry means clause subordination. Reaching for an authority here means citing a dictionary while
 writing something no Israeli AI engineer recognises.
 
 The audience reads English professionally. Hebrew buys lower activation energy and identity, not
-comprehension. So **the Hebrew does the explaining — analogy, intuition, why it breaks — and
+comprehension. So **the Hebrew does the explaining, analogy, intuition, why it breaks, and
 never does the terminology.** Fighting for a pure Hebrew term spends the budget in the one place
 it returns nothing.
 
-## Stays English — in backticks, always
+## Stays English: in backticks, always
 
 | English | Used as | Rejected | Why rejected |
 |---|---|---|---|
@@ -51,21 +51,21 @@ it returns nothing.
 | token | `token` | טוקן · אסימון | אסימון means a physical token/coin |
 | tokenizer | `tokenizer` | מפרק · מאסימן | Coinage |
 | prompt | `prompt` | פרומפט · הנחיה | הנחיה loses the technical sense |
-| retrieval | `retrieval` | אחזור | אחזור is correct Hebrew and acceptable in flowing prose, but the metric names and code are English — keep one form |
+| retrieval | `retrieval` | אחזור | אחזור is correct Hebrew and acceptable in flowing prose, but the metric names and code are English, keep one form |
 | retriever | `retriever` | מאחזר | Coinage |
 | reranker | `reranker` | מדרג מחדש | Clumsy; the tool has an English name |
 | rerank | `rerank` | דירוג מחדש | See above |
 | recall | `recall` | היזכרות · כיסוי | It is a metric name; never translate a metric |
 | precision | `precision` | דיוק | דיוק collides with accuracy |
-| recall@k | `recall@k` | — | Metric name, never translated |
-| nDCG · MRR | `nDCG` · `MRR` | — | Metric names |
-| BM25 | `BM25` | — | Algorithm name |
+| recall@k | `recall@k` |, | Metric name, never translated |
+| nDCG · MRR | `nDCG` · `MRR` |, | Metric names |
+| BM25 | `BM25` |, | Algorithm name |
 | RRF / reciprocal rank fusion | `RRF` | מיזוג דירוגים | Algorithm name |
 | hybrid search | `hybrid search` | חיפוש היברידי | Acceptable, but keep one form |
 | dense / sparse retrieval | `dense` / `sparse retrieval` | צפוף · דליל | Literal translation is confusing here |
 | context window | `context window` | חלון הקשר | חלון הקשר is real Hebrew (Wikipedia uses it) but engineers say the English; see note below |
 | context engineering | `context engineering` | הנדסת הקשר | Used in the chapter *title* only, as a title; the English inline in prose |
-| fine-tuning | `fine-tuning` | כוונון עדין | Same as context window — real Hebrew, but not spoken |
+| fine-tuning | `fine-tuning` | כוונון עדין | Same as context window, real Hebrew, but not spoken |
 | inference | `inference` | הסקה · אינפרנס | הסקה is logic; transliteration is not a word |
 | agent | `agent` | סוכן | סוכן alone is ambiguous (a sales agent). `agent` in prose; `סוכני AI` allowed in a title |
 | workflow | `workflow` | תזרים עבודה | Nobody says it |
@@ -75,13 +75,13 @@ it returns nothing.
 | LLM-as-judge | `LLM-as-judge` | שופט | Needs the full term to be unambiguous |
 | groundedness | `groundedness` | עיגון | Coinage |
 | faithfulness | `faithfulness` | נאמנות | נאמנות is loyalty; wrong sense |
-| hallucination | `hallucination` | הזיה | הזיה is actually good Hebrew and widely used — **permitted in prose**, `hallucination` in headings |
+| hallucination | `hallucination` | הזיה | הזיה is actually good Hebrew and widely used, **permitted in prose**, `hallucination` in headings |
 | cache · prefix cache | `cache` · `prefix cache` | מטמון | מטמון is correct but rare in speech |
 | latency | `latency` | השהיה · זמן תגובה | זמן תגובה permitted in prose |
-| TTFT | `TTFT` | — | Acronym |
+| TTFT | `TTFT` |, | Acronym |
 | throughput | `throughput` | תפוקה | תפוקה permitted in prose |
 | cassette | `cassette` | קלטת | Internal term of this repo; keep English |
-| notebook | `notebook` | מחברת | מחברת is good Hebrew — **permitted** |
+| notebook | `notebook` | מחברת | מחברת is good Hebrew, **permitted** |
 | repository / repo | `repo` | מאגר | מאגר permitted for a data store, `repo` for git |
 
 | RAG | `RAG` | אחזור מוגבר · ייצור מבוסס אחזור | The acronym is the name of the technique |
@@ -89,29 +89,29 @@ it returns nothing.
 | API | `API` · `API key` | ממשק תכנות | Universally spoken as the English acronym |
 | GPU | `GPU` | מעבד גרפי | Spoken as the acronym |
 | cross-encoder | `cross-encoder` | מקודד צולב | Coinage; the architecture has an English name |
-| contextual retrieval | `contextual retrieval` | אחזור מבוסס הקשר | Anthropic's name for a specific technique — a proper noun |
+| contextual retrieval | `contextual retrieval` | אחזור מבוסס הקשר | Anthropic's name for a specific technique, a proper noun |
 | reciprocal rank fusion | `RRF` · `reciprocal rank fusion` | מיזוג דירוגים הופכי | Algorithm name |
 | credentials | `credentials` | פרטי התחברות | פרטי התחברות is fine in flowing prose; the English when naming the field |
-| identifier | `identifier` | מזהה | מזהה is good Hebrew — **permitted in prose**; the English when labelling a question kind |
+| identifier | `identifier` | מזהה | מזהה is good Hebrew, **permitted in prose**; the English when labelling a question kind |
 | paraphrase | `paraphrase` | ניסוח מחדש | Used here as a label for a kind of question, so it stays one word |
 | mixed | `mixed` | מעורב | Label for a kind of question |
-| Meridian | `Meridian` | — | The invented product in chapter 01's corpus, not a real thing |
+| Meridian | `Meridian` |, | The invented product in chapter 01's corpus, not a real thing |
 
-| dictabert-seg | `dictabert-seg` | — | A model name, so never translated |
-| transformers | `transformers` | — | The library's name, not the architecture; `טרנספורמר` is the architecture |
-| JSON | `JSON` | — | Format name |
+| dictabert-seg | `dictabert-seg` |, | A model name, so never translated |
+| transformers | `transformers` |, | The library's name, not the architecture; `טרנספורמר` is the architecture |
+| JSON | `JSON` |, | Format name |
 | null | `null` | ריק · אין | It is a literal value in the data, so it keeps its literal name |
 | prefix | `prefix` | תחילית | תחילית is used in chapter 02 for Hebrew morphology; the English when it means a cached prompt prefix |
 | repair loop | `repair loop` | לולאת תיקון | לולאת תיקון reads well in prose and is used there; the English names the pattern |
 | first try | `first try` | ניסיון ראשון | ניסיון ראשון in prose; the English when naming the measured column |
-| k | `k` | — | The cut-off in `recall@k`; a variable name, never translated |
-| HeQ | `HeQ` | — | The name of the Hebrew QA dataset; a proper noun |
+| k | `k` |, | The cut-off in `recall@k`; a variable name, never translated |
+| HeQ | `HeQ` |, | The name of the Hebrew QA dataset; a proper noun |
 | BPE | `BPE` | קידוד זוגות בתים | Algorithm name, spoken as the acronym |
 | extractive | `extractive` | חילוצי | Describes a kind of QA dataset; the English is the term of art |
 | segmentation | `segmentation` | פילוח · פיצול | פיצול is used in prose for the act of splitting; the English when naming the task |
-| morphology | מורפולוגיה | — | Fully absorbed into Hebrew |
+| morphology | מורפולוגיה |, | Fully absorbed into Hebrew |
 
-## Stays Hebrew — these are ordinary Hebrew words
+## Stays Hebrew: these are ordinary Hebrew words
 
 | English | Used as | Note |
 |---|---|---|
@@ -137,7 +137,7 @@ it returns nothing.
 | speed | מהירות | Ordinary Hebrew |
 | laptop | לפטופ | Absorbed. מחשב נייד also fine |
 
-## Chapter titles — the one place Hebrew leads
+## Chapter titles: the one place Hebrew leads
 
 Titles carry the Hebrew, because a title is read as a name rather than as terminology:
 
@@ -152,7 +152,7 @@ Titles carry the Hebrew, because a title is read as a name rather than as termin
 ## The "real Hebrew but nobody says it" set
 
 `חלון הקשר`, `כוונון עדין`, `אחזור`, `דירוג`. All four are correct, all four appear in Hebrew
-Wikipedia, and all four are avoided in this repo's prose in favour of the English — because the
+Wikipedia, and all four are avoided in this repo's prose in favour of the English, because the
 reader is an engineer who will type the English into a search box five minutes later. They are
 listed here so the decision is visible and deliberate rather than looking like ignorance.
 

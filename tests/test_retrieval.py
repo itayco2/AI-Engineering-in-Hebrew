@@ -40,7 +40,7 @@ def test_bm25_rare_terms_outweigh_common_ones():
 
 
 def test_bm25_repetition_has_diminishing_returns():
-    """Doubling a term's frequency must not double the score — that is what k1 is for."""
+    """Doubling a term's frequency must not double the score, that is what k1 is for."""
     once = BM25([["alpha"], ["beta"]])
     twice = BM25([["alpha", "alpha"], ["beta"]])
     assert twice.score(["alpha"], 0) < 2 * once.score(["alpha"], 0)
@@ -131,7 +131,7 @@ def test_cosine_of_an_identical_vector_is_one():
 
 
 def test_cosine_ignores_magnitude():
-    """Normalisation is done here, not assumed — otherwise cosine silently becomes a dot
+    """Normalisation is done here, not assumed, otherwise cosine silently becomes a dot
     product and favours long documents."""
     hits = dict(cosine_search([1.0, 0.0], [[5.0, 0.0], [1.0, 0.0]], k=2))
     assert hits[0] == pytest.approx(hits[1])

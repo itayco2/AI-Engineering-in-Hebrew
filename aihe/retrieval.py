@@ -4,7 +4,7 @@ BM25 is implemented here rather than imported, for two reasons. It is the thing 
 is teaching, so hiding it behind a dependency defeats the purpose; and a pure-Python
 implementation keeps `requirements-test.txt` lean enough that CI stays under a minute.
 
-Every function returns `list[tuple[int, float]]` — (index into the corpus, score) sorted by
+Every function returns `list[tuple[int, float]]`, (index into the corpus, score) sorted by
 score descending. One return shape everywhere means the merge step needs no adapters.
 """
 
@@ -34,7 +34,7 @@ class BM25:
 
     A document scores higher the more query words it contains; rare words count for more;
     repeating a word has diminishing returns (`k1`); and long documents get no unfair edge
-    (`b`). It matches literal strings, so it wins exactly where embeddings blur — error
+    (`b`). It matches literal strings, so it wins exactly where embeddings blur, error
     codes, product IDs, function names, people's names.
 
     The IDF here is the Lucene variant, `ln(1 + (N - df + 0.5) / (df + 0.5))`, which stays
@@ -96,7 +96,7 @@ def cosine_search(query_vector, doc_vectors, k: int = 10) -> Hits:
 
     `doc_vectors` is (n_docs, dim). Vectors are normalised here rather than assumed
     normalised, because a silently un-normalised matrix turns cosine into a dot product and
-    quietly favours long documents — a bug that produces plausible-looking results.
+    quietly favours long documents, a bug that produces plausible-looking results.
     """
     import numpy as np
 
@@ -122,7 +122,7 @@ def rrf(rankings: Sequence[Sequence[int]], k: int = 60) -> Hits:
 
         score(d) = sum over lists of 1 / (k + rank of d in that list)
 
-    Ranks are 1-based. Using ranks rather than scores is the whole point — you never have to
+    Ranks are 1-based. Using ranks rather than scores is the whole point, you never have to
     decide whether a BM25 score of 8.2 beats a cosine similarity of 0.71.
 
     `k = 60` is the paper's value and the reason steady agreement beats one lucky first
@@ -151,7 +151,7 @@ def rerank(
 
     Retrieve wide and cheap, then re-score narrow and expensive. A cross-encoder reads the
     question and one candidate *together*, which is why it is more accurate than comparing
-    two independently-computed vectors — and why it is far too slow to run over a million
+    two independently-computed vectors, and why it is far too slow to run over a million
     documents but fine over 150.
 
     `scorer` is injected rather than constructed here so this function stays pure and

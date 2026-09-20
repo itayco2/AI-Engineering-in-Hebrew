@@ -17,7 +17,7 @@ from aihe.judge import (
 
 @pytest.mark.parametrize("text,expected", [
     ("yes", True), ("Yes, it does.", True), ("כן", True),
-    ("no", False), ("No — it does not.", False), ("לא", False),
+    ("no", False), ("No, it does not.", False), ("לא", False),
 ])
 def test_a_clear_verdict_is_read(text, expected):
     assert read_yes_no(text) is expected

@@ -2,7 +2,7 @@
 
 GitHub's Markdown renderer decides a paragraph's direction from its first strong character.
 A Hebrew paragraph that opens with an English word or a code span is rendered left to right,
-and no stylesheet loaded later can undo that — the decision was made before any CSS ran. The
+and no stylesheet loaded later can undo that, the decision was made before any CSS ran. The
 only fix is the writing rule, so it is checked here.
 
 Run: python scripts/check_rtl.py    (or: make rtl)

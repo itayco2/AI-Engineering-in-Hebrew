@@ -1,6 +1,6 @@
 """Hebrew text handling: prefix splitting, normalisation, and what it costs.
 
-All pure functions — no model, no download. The model-based segmenter is exercised in
+All pure functions, no model, no download. The model-based segmenter is exercised in
 chapter 02's own tests, where it is marked slow.
 """
 

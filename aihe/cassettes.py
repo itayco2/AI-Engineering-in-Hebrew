@@ -28,7 +28,7 @@ def key_for(model: str, messages: list[dict], tools: Any = None, **params: Any) 
 
     Canonical JSON with sorted keys, so the same request always produces the same key
     regardless of dict ordering. Volatile parameters that do not change the answer's meaning
-    are excluded by the caller, not here — this function hashes exactly what it is given.
+    are excluded by the caller, not here, this function hashes exactly what it is given.
     """
     payload = json.dumps(
         {"model": model, "messages": messages, "tools": tools, "params": params},

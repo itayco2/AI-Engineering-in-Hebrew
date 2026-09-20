@@ -1,4 +1,4 @@
-"""The whole retrieval pipeline, assembled — so a notebook cell can be one line.
+"""The whole retrieval pipeline, assembled, so a notebook cell can be one line.
 
 Chapter 01 walks up a staircase: plain embeddings, then context prepended to every chunk,
 then BM25 fused in, then a reranker over the shortlist. Each step is one function here, and
@@ -146,7 +146,7 @@ def reranked_retriever(
 
     Retrieve wide and cheap, then re-score narrow and expensive. The reranker never sees the
     documents the base retriever failed to surface, so it can fix an ordering and can never
-    fix a miss — which is why recall deep in the list does not move and recall at rank 1 does.
+    fix a miss, which is why recall deep in the list does not move and recall at rank 1 does.
     """
 
     def retrieve(index: int, question: str) -> Ranked:

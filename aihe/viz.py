@@ -1,7 +1,7 @@
 """Every figure in this repo is generated here. None is ever a screenshot.
 
 Two reasons, and the second is the important one. A generated figure cannot go stale
-silently — change the data and the picture changes with it. And a figure drawn from numbers
+silently, change the data and the picture changes with it. And a figure drawn from numbers
 the reader just computed proves its claim, where a screenshot of someone else's chart only
 repeats it.
 
@@ -31,7 +31,7 @@ def _axes(width: float = 7.0, height: float = 4.0):
 
 
 def staircase(results: Mapping[str, float], k: int = 20, title: str = ""):
-    """Failed retrieval rate per setup — the shape Anthropic reported in 2024.
+    """Failed retrieval rate per setup, the shape Anthropic reported in 2024.
 
     Stated as a failure rate rather than as recall on purpose: halving a failure rate reads
     as the improvement it is, where "recall went from 94.3% to 97.1%" does not.

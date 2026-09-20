@@ -67,7 +67,7 @@ def dcg_at_k(retrieved: Sequence[Doc], relevant: Collection[Doc], k: int) -> flo
 
 
 def ndcg_at_k(retrieved: Sequence[Doc], relevant: Collection[Doc], k: int) -> float:
-    """DCG divided by the best DCG achievable — so 1.0 means perfectly ordered.
+    """DCG divided by the best DCG achievable, so 1.0 means perfectly ordered.
 
     Unlike recall, this rewards putting the right document at rank 1 rather than rank 9.
     """
@@ -112,7 +112,7 @@ def mean_ndcg_at_k(queries: Sequence[Query], k: int) -> float:
 
 
 def failed_retrieval_rate(queries: Sequence[Query], k: int = 20) -> float:
-    """`1 - mean recall@k` — the share of relevant chunks missing from the top `k`.
+    """`1 - mean recall@k`, the share of relevant chunks missing from the top `k`.
 
     This is the metric Anthropic reported their contextual-retrieval staircase in (2024):
     5.7% failed retrievals with plain embeddings, 3.7% with a context sentence prepended to

@@ -2,8 +2,8 @@
 
 ## `probes.json`
 
-Six planted-fact probes, written for this chapter. Each one states a distinctive fact — a
-deploy code, a region, a number of days — then buries it under five turns of realistic tool
+Six planted-fact probes, written for this chapter. Each one states a distinctive fact, a
+deploy code, a region, a number of days, then buries it under five turns of realistic tool
 output (pagination logs and indexing reports), then asks for the fact back.
 
 The facts are deliberately arbitrary. `TANGERINE-7741` cannot be guessed, inferred or
@@ -21,7 +21,7 @@ summarisation does, and it is exactly why the fact disappears.
 
 ## `cassettes/`
 
-18 real replies from `Llama-3.2-3B-Instruct-Q4_K_M` — six probes under three strategies —
+18 real replies from `Llama-3.2-3B-Instruct-Q4_K_M`, six probes under three strategies,
 recorded at `temperature 0`, `seed 7`.
 
 **One honest caveat about the numbers.** Keeping everything recalls the fact on four probes out

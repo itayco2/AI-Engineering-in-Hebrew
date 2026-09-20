@@ -4,8 +4,8 @@
 
 One tool, described twice, and eight ordinary requests.
 
-- **`search_docs`** — one line of description, three primitive parameters.
-- **`search_documentation_corpus`** — the same tool, described the way a real codebase
+- **`search_docs`**: one line of description, three primitive parameters.
+- **`search_documentation_corpus`**: the same tool, described the way a real codebase
   describes one: six lines, five parameters. Nothing about it is unreasonable. It is simply
   longer, and length is the variable under test.
 
@@ -17,7 +17,7 @@ would be measuring the prompt rather than the model.
 
 ## `cassettes/`
 
-Real replies from `Llama-3.2-3B-Instruct-Q4_K_M` at `temperature 0`, `seed 7` — every attempt
+Real replies from `Llama-3.2-3B-Instruct-Q4_K_M` at `temperature 0`, `seed 7`, every attempt
 of every repair loop, under both validators.
 
 Both validators are recorded because they produce different rejection messages, and a different

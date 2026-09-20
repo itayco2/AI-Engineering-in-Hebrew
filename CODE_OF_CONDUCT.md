@@ -5,7 +5,7 @@ this repository they almost certainly are.
 
 ## In practice
 
-- Critique the code, the number or the sentence — not the person who wrote it.
+- Critique the code, the number or the sentence, not the person who wrote it.
 - "This is wrong, and here is the measurement" is welcome and wanted. "This is obvious" is not.
 - Hebrew or English, whichever you think in. Neither is corrected for style in an issue.
 - Beginners' questions are the point of the project, not an interruption to it.

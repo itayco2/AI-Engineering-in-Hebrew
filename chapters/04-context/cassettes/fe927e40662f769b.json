@@ -1,0 +1,22 @@
+{
+  "key": "fe927e40662f769b",
+  "model": "Llama-3.2-3B-Instruct-Q4_K_M",
+  "request": {
+    "messages": [
+      {
+        "content": "user: Remember this: the on-call engineer is Dana Levi.\nassistant: הבנתי.\ntool: GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=curs ...[truncated]\nassistant: בסדר.\ntool: indexed 1284 documents in 6.2s; segments merged 14 -> 3; heap 412MB; cache warm; shard 0 ok; shard 1 ok; shard 2 ok; sha ...[truncated]\nassistant: בסדר.\ntool: GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=curs ...[truncated]\nassistant: בסדר.\ntool: indexed 1284 documents in 6.2s; segments merged 14 -> 3; heap 412MB; cache warm; shard 0 ok; shard 1 ok; shard 2 ok; sha ...[truncated]\nassistant: בסדר.\ntool: GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=curs ...[truncated]\nassistant: בסדר.\nuser: Who is the on-call engineer? Answer with the name only.\n",
+        "role": "user"
+      }
+    ],
+    "params": {
+      "max_tokens": 64,
+      "seed": 7,
+      "temperature": 0.0
+    },
+    "tools": null
+  },
+  "response": {
+    "text": "Dana Levi",
+    "tool_calls": []
+  }
+}

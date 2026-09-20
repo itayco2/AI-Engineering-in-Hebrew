@@ -1,7 +1,7 @@
 """One interface to a model, four ways to get one.
 
 Every chapter that needs generation goes through `chat()`. The interface is deliberately
-tiny — messages in, text and tool calls out — because every chapter depends on it and a
+tiny, messages in, text and tool calls out, because every chapter depends on it and a
 churning interface would break all of them at once.
 
 Backends are chosen with the `AIHE_BACKEND` environment variable:
@@ -13,7 +13,7 @@ Backends are chosen with the `AIHE_BACKEND` environment variable:
 
 One thing to know before writing a test: **generated text is not reproducible**, even at
 temperature 0 with a fixed seed. It drifts between runs and differs across platforms. So no
-test in this repo asserts on generated text. Tests assert on the deterministic parts — the
+test in this repo asserts on generated text. Tests assert on the deterministic parts, the
 retrieval, the metrics, the validators, the byte-exact prefix check.
 """
 

@@ -16,7 +16,7 @@ DEFAULT_MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
 
 _MISSING = (
     "sentence-transformers is not installed.\n"
-    "It is not in requirements-test.txt on purpose — the fast suite must not pay for it.\n"
+    "It is not in requirements-test.txt on purpose, the fast suite must not pay for it.\n"
     "Run:  make setup     (or: pip install -r requirements.txt)"
 )
 
@@ -77,7 +77,7 @@ def cross_encoder_scorer(model_name: str = DEFAULT_RERANKER):
     """Build a scorer for `aihe.retrieval.rerank`.
 
     A cross-encoder reads the question and one candidate together and scores the pair, which
-    is why it beats comparing two vectors computed in ignorance of each other — and why it
+    is why it beats comparing two vectors computed in ignorance of each other, and why it
     is far too slow for a million documents and fine for 150.
     """
 

@@ -54,7 +54,7 @@ def fixed(text: str, size: int = 400, overlap: int = 50, doc_id: str = "") -> li
     """Cut every `size` characters, stepping back `overlap` each time.
 
     The strategy that ignores the text completely. It will cut mid-word and mid-sentence,
-    which is exactly why it is here — chapter 01 measures what that costs.
+    which is exactly why it is here, chapter 01 measures what that costs.
     """
     _validate(size, overlap)
     if not text:

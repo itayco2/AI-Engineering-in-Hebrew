@@ -80,7 +80,7 @@ def summarise_old(
     return [Turn(role, summary), *turns[len(turns) - keep_recent:]]
 
 
-def cap_tool_output(content: str, limit: int, marker: str = " …[truncated]") -> str:
+def cap_tool_output(content: str, limit: int, marker: str = " ...[truncated]") -> str:
     """Cut one tool result down to `limit` characters, at the moment it is written.
 
     The cheap win. Applying the cap **on write** means the history never contains the long

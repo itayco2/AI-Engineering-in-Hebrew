@@ -13,7 +13,7 @@ PROSE = (
 
 @pytest.mark.parametrize("name", sorted(STRATEGIES))
 def test_offsets_point_back_at_the_source(name):
-    """doc[chunk.start:chunk.end] is exactly chunk.text — a chunk you cannot locate
+    """doc[chunk.start:chunk.end] is exactly chunk.text, a chunk you cannot locate
     in the original document is a chunk you cannot debug."""
     for chunk in STRATEGIES[name](PROSE, size=120):
         assert PROSE[chunk.start : chunk.end] == chunk.text

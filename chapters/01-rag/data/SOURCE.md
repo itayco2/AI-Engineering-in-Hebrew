@@ -10,7 +10,7 @@ and questions phrased so they share almost no words with their answers. A scrape
 would be more realistic and would make every number in the chapter unfalsifiable.
 
 - **46 documents**, 246-469 characters each
-- **28 questions**, each with the documents that genuinely answer it
+- **28 questions**: each with the documents that genuinely answer it
 - Questions are labelled `identifier`, `paraphrase` or `mixed`, which is what lets the
   chapter show that different retrieval mechanisms fix different failures
 

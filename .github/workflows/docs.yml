@@ -54,15 +54,16 @@ jobs:
         with:
           path: site
 
-  # Deploy is allowed to fail, and the badge reflects the build. GitHub Pages must be enabled
-  # in repository settings before this can succeed, and on a free plan that needs the repository
-  # to be public. Until then the site builds and is verified on every push; only publishing
-  # waits. A badge that is permanently red because of a settings toggle teaches a reader that
-  # the project is abandoned, which is the opposite of true here.
+  # Deploy runs only once Pages is actually enabled. GitHub Pages needs the repository to be
+  # public on a free plan, so until then this job is skipped rather than failed: a permanent
+  # red cross in the checks list reads as a broken project, and nothing here is broken. The
+  # site still builds and is verified on every push.
+  #
+  # To turn it on: make the repository public, enable Pages (Settings -> Pages -> GitHub
+  # Actions), then add a repository variable PAGES_ENABLED with the value true.
   deploy:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && vars.PAGES_ENABLED == 'true'
     needs: build
-    continue-on-error: true
     runs-on: ubuntu-latest
     environment:
       name: github-pages

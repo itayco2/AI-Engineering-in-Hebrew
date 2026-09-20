@@ -1,0 +1,12 @@
+# Everything a chapter needs to run. Chapters 01-03 use only the embedding stack: no
+# generation, no Ollama, no GPU, no RAM floor. That is what makes the zero-cost promise
+# hold on any laptop.
+sentence-transformers==5.1.2
+matplotlib==3.10.7
+datasets==4.4.1
+
+# Generation, for chapters 04-05. Both are optional: `AIHE_BACKEND=replay` reads the
+# cassettes committed in this repo and needs neither.
+#   Ollama is a separate install:  https://ollama.com/download
+#   llama-cpp-python is pip-only and works natively on Windows:
+# llama-cpp-python==0.3.16

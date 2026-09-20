@@ -1,0 +1,5 @@
+# Tier 2: executing the chapter notebooks. Layered on top of requirements-test.txt and
+# requirements.txt, kept separate so tier 1 never pays for jupyter.
+nbmake==1.5.6
+ipykernel==7.1.0
+nbstripout==0.8.2

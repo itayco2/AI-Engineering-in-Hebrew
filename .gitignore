@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+site/
+.DS_Store
+
+# Notebook output never enters a diff — nbstripout enforces this in pre-commit.
+# See CONTRIBUTING.md: committed outputs make every diff 2,000 lines of JSON churn.

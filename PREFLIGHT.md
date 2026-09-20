@@ -79,3 +79,17 @@ Defect 9 is the one worth pausing on. The rule was written on day one, argued fo
 chapter. It was caught in under a second by a test that knows nothing about what the notebook
 was trying to do. That is the entire argument for spending the first day on infrastructure
 rather than content.
+
+## Found in the pre-publication audit
+
+| # | what was wrong | the number that showed it | fix | the number after |
+|---|---|---|---|---|
+| 11 | **A chapter shipped a claim that was never measured.** Chapter 03's `meta.yml` headline said a holistic judge called the reply good on **100%** of the answers that had lost the fact. That figure came from the source paper and was written before the chapter was run | the measurement said **50.0%**, and the sharper number — pairs separated correctly — was `6/12` | headline rewritten to the measured result; `tests/test_contract.py` now checks every headline against the values its chapter produces | every headline quotes a number the chapter computes |
+| 12 | **CI was red and the badge was green-by-luck.** On Linux `pip install torch` fetches the CUDA build and several gigabytes of NVIDIA libraries this course never uses; with five chapters of model cache that overflowed the runner's disk | `OSError: [Errno 28] No space left on device`, in both `docs` and `notebooks` | install CPU-only torch first, in CI and in `make setup` on Linux | both workflows install and run |
+| 13 | **`make setup` failed on a clean Mac.** macOS ships `python3` as 3.9, which builds a venv that cannot install torch and fails ten minutes later with "no matching distribution" | a fresh clone died at `exit 2` with a shell syntax error, having also never installed the package or the docs requirements | detect the newest interpreter that is 3.10 or above and say which one; stop at second zero with the `brew` command if there is none | fresh clone: `make setup` exit 0, `make gate` 39.7s, `make test` 314 passed, `make run-01` passed |
+| 14 | **`make test` skipped every chapter's own claims.** It ran `tests/` only | 273 tests instead of 314 | run `tests chapters` | 314 |
+
+Defect 11 is the one that matters most for a repository whose whole argument is that it
+measures things. The claim was plausible, it was in the right shape, it cited a real source —
+and it was about this chapter's own data, which had said something else. Nothing but a test
+comparing the headline to the measurement was ever going to catch it.

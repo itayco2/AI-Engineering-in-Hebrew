@@ -18,4 +18,4 @@ terms:
   - MRR
   - LLM-as-judge
   - eval
-headline: "a holistic judge called the reply good on 100% of the answers that had lost the fact"
+headline: "a holistic judge separated the good answer from the bad one on 6 of 12 questions - a coin"

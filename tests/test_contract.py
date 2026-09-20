@@ -95,3 +95,30 @@ def test_the_notebook_has_prose_not_only_code(chapter):
 
 def test_readme_links_to_the_interview_questions(chapter):
     assert "interview.md" in (chapter / "README.md").read_text(encoding="utf-8")
+
+
+# --- headlines are claims, and a claim written before the measurement goes stale -----------
+
+MEASURED = {
+    "01-rag": ["0.571", "0.821"],
+    "02-hebrew-rag": ["0.866", "0.902"],
+    "03-evals": ["6 of 12"],
+    "04-context": ["67%", "47%"],
+    "05-agents": ["one line", "six"],
+}
+
+
+def test_the_headline_quotes_numbers_that_were_actually_measured(chapter):
+    """Chapter 03 shipped a headline claiming 100% where the measurement said 50%, because it
+    was written from the source paper before the chapter was run. Every figure a headline
+    quotes is now checked against the value the chapter produces."""
+    import yaml
+
+    meta = yaml.safe_load((chapter / "meta.yml").read_text(encoding="utf-8"))
+    headline = meta["headline"]
+    expected = MEASURED.get(chapter.name)
+    assert expected, f"{chapter.name} has no recorded headline figures to check against"
+    missing = [value for value in expected if value not in headline]
+    assert not missing, (
+        f"{chapter.name} headline does not quote its measured values {missing}: {headline!r}"
+    )

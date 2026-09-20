@@ -75,12 +75,6 @@ make setup && make run-01
 
 **`fine-tuning`**: דורש `GPU`.
 
-## להפעיל את האתר
-
-האתר נבנה ונבדק בכל `push`, אבל הוא מתפרסם רק כשמדליקים אותו במפורש. שלושה צעדים: להפוך את הריפו לציבורי, להפעיל `Pages` תחת `Settings` ואז `Pages` עם המקור `GitHub Actions`, ולהוסיף משתנה ריפו בשם `PAGES_ENABLED` עם הערך `true`.
-
-עד אז שלב ה-`deploy` פשוט מדולג, ולא נכשל. סימן כשל קבוע ברשימת הבדיקות נקרא כמו פרויקט שבור, וכאן שום דבר לא שבור.
-
 ## קישורים
 
 [הקורס באתר](https://itayco2.github.io/AI-Engineering-in-Hebrew/) · [מילון המונחים](TERMS.md) · [איך נמדדו המספרים](PREFLIGHT.md) · [לתרום](CONTRIBUTING.md) · [English](README.en.md)

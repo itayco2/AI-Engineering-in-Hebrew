@@ -5,6 +5,10 @@
 # be tested without any of that. Adding a heavy dependency here turns a 40-second CI run
 # into a 6-minute one, and a slow badge is a badge nobody trusts.
 pytest==9.1.1
-numpy==2.5.3
 pydantic==2.12.3
 PyYAML==6.0.3
+
+# numpy 2.5 dropped Python 3.11 and earlier. Pinned per version rather than loosened, so the
+# 3.10 and 3.11 jobs in the support matrix actually resolve instead of failing at install.
+numpy==2.5.3; python_version >= "3.12"
+numpy==2.4.6; python_version < "3.12"

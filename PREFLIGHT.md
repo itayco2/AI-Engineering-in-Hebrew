@@ -51,3 +51,17 @@ For reference, Anthropic reported the same shape on their own corpora in 2024: 5
 retrievals with plain embeddings, 3.7% with contextual embeddings, 2.9% adding BM25, 1.9%
 adding a reranker. Those are their numbers on their data. The point of this chapter is that
 you run it on yours.
+
+## Chapter 02 — RAG in Hebrew
+
+| # | what was wrong | the number that showed it | fix | the number after |
+|---|---|---|---|---|
+| 5 | **The Hebrew segmentation model loaded with a randomly initialised head.** `dicta-il/dictabert-seg` stores its prefix head at the top level (`classifiers.*`, `transform.*`) while the current remote code expects it under `prefix.*`. The loader fills the gap with random weights and raises nothing | it segmented `מידע` (information) as `מ` + `ידע`, and left `ובמסמכים` — genuinely `וב` + `מסמכים` — whole. Confident, fluent, wrong | remap the checkpoint keys in `aihe.hebrew.load_segmenter`, and raise rather than return a model whose head did not load | `missing: 0, unexpected: 0`, and `ובמסמכים → וב+מסמכים` |
+| 6 | **The rule-based prefix splitter looped.** It kept finding prefix letters inside stems, because Hebrew stems often begin with them | `ובמסמכים` came out as `וב` + `מ` + `סמכים`, `השרתים` as `ה` + `ש` + `רתים`, and `שולחן` as `ש` + `ול` + `חן` | strip at most once, handle stacked prefixes with a bounded cluster list, and raise the minimum stem to 3 | agreement with the model went from unusable to **74.9%** on 574 real words |
+| 7 | **`לה` was in the prefix cluster list.** Taking both letters destroyed the stem | `להצפנה` (to the encryption) came out as `לה` + `צפנה`, where `צפנה` is not a word | remove it, so the single-letter rule handles it | `להצפנה → ל+הצפנה`, matching the model |
+
+Defects 2 and 5 are the same bug in two different libraries, a year apart, and both were
+invisible: a model that loads, runs, costs its full inference time, and is quietly wrong. Neither
+raised anything. Both were caught by a number that could not be explained any other way — a
+reranker that changed an order-sensitive metric by exactly zero, and a segmenter that split a
+word every Hebrew speaker knows is one piece.

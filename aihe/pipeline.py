@@ -158,3 +158,50 @@ def reranked_retriever(
         return [candidates[i] for i in order]
 
     return retrieve
+
+
+# --- passage-level retrieval ---------------------------------------------------------------
+# Chapter 02 evaluates whole passages rather than chunks, because HeQ's passages are already
+# the retrieval unit. Keeping these separate from the chunk-based retrievers above avoids
+# threading an "are these chunks or documents?" flag through everything.
+
+
+def encode_corpus(model, corpus: Corpus, asymmetric: bool = False):
+    """Embed the passages and the questions, adding e5's prefixes when asked.
+
+    Some embedding models are **asymmetric**: they are trained with `query:` on one side and
+    `passage:` on the other, and omitting the prefixes costs accuracy without raising anything.
+    It is a trap worth making explicit rather than hiding inside a wrapper.
+    """
+    docs = [d["text"] for d in corpus.documents]
+    questions = corpus.questions()
+    if asymmetric:
+        docs = [f"passage: {d}" for d in docs]
+        questions = [f"query: {q}" for q in questions]
+    kwargs = {"normalize_embeddings": True, "show_progress_bar": False, "batch_size": 16}
+    return model.encode(docs, **kwargs), model.encode(questions, **kwargs)
+
+
+def passage_retriever(question_vectors, passage_vectors, corpus: Corpus, width: int = 20):
+    """Rank whole passages by cosine similarity."""
+    ids = [d["id"] for d in corpus.documents]
+
+    def retrieve(index: int, _question: str) -> Ranked:
+        hits = cosine_search(question_vectors[index], passage_vectors, k=width)
+        return [ids[i] for i, _ in hits]
+
+    return retrieve
+
+
+def keyword_retriever(corpus: Corpus, tokenizer, width: int = 20):
+    """Rank whole passages with BM25, using whichever tokenizer is passed in.
+
+    The tokenizer is injected because swapping it is the entire experiment in chapter 02.
+    """
+    ids = [d["id"] for d in corpus.documents]
+    bm25 = BM25([tokenizer(d["text"]) for d in corpus.documents])
+
+    def retrieve(_index: int, question: str) -> Ranked:
+        return [ids[i] for i, _ in bm25.search(tokenizer(question), k=width)]
+
+    return retrieve

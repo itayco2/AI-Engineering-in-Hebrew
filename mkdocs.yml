@@ -67,6 +67,10 @@ nav:
   - "פרק 01 — RAG מאפס":
       - הפרק: chapters/01-rag/chapter.ipynb
       - שאלות ריאיון: chapters/01-rag/interview.md
+  - "פרק 02 — RAG בעברית":
+      - הפרק: chapters/02-hebrew-rag/chapter.ipynb
+      - שאלות ריאיון: chapters/02-hebrew-rag/interview.md
   - מילון המונחים: TERMS.md
+  - מה נמדד ולמה: FINDINGS.md
   - איך נמדדו המספרים: PREFLIGHT.md
   - לתרום לקורס: CONTRIBUTING.md

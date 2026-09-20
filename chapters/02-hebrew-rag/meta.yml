@@ -1,0 +1,23 @@
+id: "02-hebrew-rag"
+title_he: "RAG בעברית"
+title_en: "RAG in Hebrew"
+# Embeddings and tokenizers only. The 700 MB segmentation model's output is recorded in
+# data/dictabert-seg.json, so the chapter compares against it without the download.
+needs_llm: false
+ram_gb: 2
+est_minutes: 35
+datasets:
+  - "data/heq-subset.json"
+  - "data/dictabert-seg.json"
+models:
+  - "intfloat/multilingual-e5-small"
+  - "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+  - "gpt2"
+terms:
+  - tokenizer
+  - embedding
+  - retrieval
+  - BM25
+  - recall
+  - MRR
+headline: "prefix splitting lifts BM25 MRR 0.866 -> 0.902, and chapter 01's embedder is the worst of four on Hebrew"

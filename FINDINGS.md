@@ -62,3 +62,45 @@ e5 wins at rank 1 and loses at rank 3, and it needs the `query:`/`passage:` pref
 is the chapter where every piece of infrastructure gets debugged, so it keeps the simpler
 symmetric model and the cleaner `recall@3` staircase. The switch becomes chapter 02's finding,
 where it is earned by measurement rather than asserted in a footnote.
+
+## Does splitting Hebrew prefixes improve keyword retrieval?
+
+**Yes, and the interesting part is that a rule which is wrong a quarter of the time still
+helps.** Measured on the chapter's own HeQ subset: 150 passages, 1,036 questions. Only the
+tokenizer changes between rows.
+
+| tokenizer | MRR | recall@1 | recall@5 | failed@5 |
+|---|---|---|---|---|
+| chapter 01's plain tokenizer | 0.866 | 0.814 | 0.931 | 6.9% |
+| + normalise niqqud only | 0.868 | 0.817 | 0.931 | 6.9% |
+| **+ split glued prefixes (rules)** | **0.902** | **0.856** | **0.958** | **4.2%** |
+
+Failed retrievals fall by 39%, from about fifteen lines of rules and no download at all.
+
+### Why a 75%-accurate rule still helps
+
+The rule-based splitter agrees with `dictabert-seg` on **74.9%** of 574 real Hebrew words. It
+wrongly splits `כלים` into `כ` + `לים`, `משתמשים` into `מ` + `שתמשים`, and `הקלטות` into
+`ה` + `קלטות` — words that merely begin with a prefix letter.
+
+It helps anyway because of how the index is built: `tokenize_hebrew` adds the stem **alongside**
+the original word rather than replacing it. A wrong stem contributes a token no query will ever
+ask for — noise — and never removes a match that would have been found. Replace the word instead
+of adding to it and the same rule would hurt.
+
+That generalises: design the failure mode and you can afford a worse component.
+
+## What does Hebrew actually cost in tokens?
+
+**It depends entirely on the tokenizer, and the spread is much larger than the folklore.**
+
+| tokenizer | English tokens | Hebrew tokens | ratio |
+|---|---|---|---|
+| GPT-2 (English BPE) | 84 | 376 | **4.48x** |
+| XLM-R (multilingual) | 102 | 105 | **1.03x** |
+
+Same four sentence pairs, same content. The single word `ובמסמכים` becomes **10 tokens** of
+byte fragments under GPT-2 and **3 tokens** under XLM-R — `▁וב`, `מס`, `מכים`, where the first
+split happens to match the morphology.
+
+"Hebrew is expensive" is a statement about a tokenizer, not about Hebrew.

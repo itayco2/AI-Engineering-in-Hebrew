@@ -21,7 +21,7 @@
 | פרק | מה בונים | צריך מודל שפה |
 |---|---|---|
 | [01 — RAG מאפס](chapters/01-rag/chapter.ipynb) | `pipeline` שלם: `chunking`, `embeddings`, `BM25`, `RRF`, `reranker` | לא |
-| 02 — RAG בעברית | מה מורפולוגיה עברית עושה ל-`chunking` ול-`tokenization` | לא |
+| [**02 — RAG בעברית**](chapters/02-hebrew-rag/chapter.ipynb) | מורפולוגיה עברית, עלות `tokens`, ואיזה `embedding` באמת עובד | לא |
 | 03 — איך יודעים שזה עובד | `recall`, `precision`, `nDCG`, ואיפה `LLM-as-judge` משקר | כן |
 | 04 — הנדסת הקשר | למה לשמור הכל מנצח סיכום, ומה ה-`cache` עושה לזה | כן |
 | 05 — סוכנים | הלולאה, `tool schemas`, ולמה מודלים קטנים שוברים `JSON` | כן |

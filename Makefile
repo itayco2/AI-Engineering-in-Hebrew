@@ -33,6 +33,9 @@ notebooks:  ## execute every chapter from recorded cassettes (no network)
 run-01:  ## execute chapter 01 end to end
 	AIHE_BACKEND=replay $(PY) -m pytest --nbmake chapters/01-rag/chapter.ipynb
 
+run-02:  ## execute chapter 02 end to end
+	AIHE_BACKEND=replay $(PY) -m pytest --nbmake chapters/01-rag/chapter.ipynb
+
 record:  ## re-record cassettes from a real model, then review the diff
 	$(PY) scripts/record_cassettes.py
 

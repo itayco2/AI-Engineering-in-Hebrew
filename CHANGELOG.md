@@ -5,6 +5,15 @@ Notable changes, newest first. This project follows [semantic versioning](https:
 ## [Unreleased]
 
 ### Added
+- **Chapter 02 — RAG in Hebrew.** The same pipeline on 150 real Hebrew passages and 1,036
+  human-written questions from HeQ (CC BY 4.0). Splitting Hebrew's glued prefixes lifts BM25
+  from `0.866` to `0.902` MRR and cuts failed retrievals by 39%, from about fifteen lines of
+  rules and no download. Hebrew costs `4.48x` more tokens than English under an
+  English-trained BPE and `1.03x` under a multilingual one — the word `ובמסמכים` is 10 tokens
+  under one and 3 under the other. And chapter 01's embedding model turns out to be the worst
+  of four tested on Hebrew, which the chapter measures rather than asserts.
+- `aihe.hebrew`: prefix splitting by rule and by model, niqqud normalisation, final-form
+  folding, and token-cost measurement.
 - **Chapter 01 — RAG from scratch.** A complete retrieval pipeline measured end to end on a
   46-document, 28-question corpus written for the purpose. `recall@1` climbs 57.1% → 67.9% →
   78.6% → 82.1% across four steps; failed retrievals at `k=3` fall 23.2% → 8.9%. The chapter
@@ -24,6 +33,13 @@ Notable changes, newest first. This project follows [semantic versioning](https:
   each one.
 
 ### Fixed
+- The Hebrew segmentation model loaded with a randomly initialised head and raised nothing,
+  segmenting `מידע` as `מ` + `ידע`. The checkpoint stores its head at the top level while the
+  remote code expects it nested; `aihe.hebrew.load_segmenter` remaps the keys and now refuses
+  to return a model whose head did not load. Same failure class as the reranker below, in a
+  different library.
+- The rule-based prefix splitter looped, turning `ובמסמכים` into three pieces because Hebrew
+  stems often begin with prefix letters. It now strips at most once.
 - The reranker was silently a no-op: `cross-encoder/ms-marco-MiniLM-L-6-v2` returns `NaN` from
   its forward pass on torch 2.14, with clean parameters and no error raised. A `NaN` score is
   not a low score — every comparison against it is false, so sorting left the order untouched

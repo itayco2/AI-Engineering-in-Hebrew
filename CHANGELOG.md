@@ -14,7 +14,7 @@ network.
   good answer from the bad one on **6 of 12** questions, exactly what a coin gets, while a
   substring check with no model in it was right on all 24.
 - **Chapter 04: Context engineering.** Summarising saved **67%** of the characters and lost the
-  planted fact **6 times out of 6**; capping tool output on write saved 47% and lost nothing.
+  planted fact **6 times out of 6**; capping tool output on write saved 46% and lost nothing.
   The mechanism is decided by comparing bytes: a cache hits only on an unchanged prefix.
 - **Chapter 05: Agents.** The same tool described in one line and in six: first-try success
   fell from **75% to 12%**. And **89% of every first-attempt failure** was the model answering
@@ -38,9 +38,9 @@ network.
 ### Added
 - **Chapter 02: RAG in Hebrew.** The same pipeline on 150 real Hebrew passages and 1,036
   human-written questions from HeQ (CC BY 4.0). Splitting Hebrew's glued prefixes lifts BM25
-  from `0.866` to `0.902` MRR and cuts failed retrievals by 39%, from about fifteen lines of
-  rules and no download. Hebrew costs `4.48x` more tokens than English under an
-  English-trained BPE and `1.03x` under a multilingual one, the word `ובמסמכים` is 10 tokens
+  from `0.866` to `0.902` MRR and cuts failed retrievals by 40%, from about fifteen lines of
+  rules and no download. Hebrew costs `4.33x` more tokens than English under an
+  English-trained BPE and `1.06x` under a multilingual one, the word `ובמסמכים` is 10 tokens
   under one and 3 under the other. And chapter 01's embedding model turns out to be the worst
   of four tested on Hebrew, which the chapter measures rather than asserts.
 - `aihe.hebrew`: prefix splitting by rule and by model, niqqud normalisation, final-form

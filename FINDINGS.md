@@ -71,11 +71,11 @@ tokenizer changes between rows.
 
 | tokenizer | MRR | recall@1 | recall@5 | failed@5 |
 |---|---|---|---|---|
-| chapter 01's plain tokenizer | 0.866 | 0.814 | 0.931 | 6.9% |
-| + normalise niqqud only | 0.868 | 0.817 | 0.931 | 6.9% |
-| **+ split glued prefixes (rules)** | **0.902** | **0.856** | **0.958** | **4.2%** |
+| chapter 01's plain tokenizer | 0.866 | 0.814 | 0.931 | 6.95% |
+| + normalise niqqud only | 0.868 | 0.817 | 0.931 | 6.95% |
+| **+ split glued prefixes (rules)** | **0.902** | **0.856** | **0.958** | **4.15%** |
 
-Failed retrievals fall by 39%, from about fifteen lines of rules and no download at all.
+Failed retrievals fall by 40%, from about fifteen lines of rules and no download at all.
 
 ### Why a 75%-accurate rule still helps
 
@@ -96,10 +96,10 @@ That generalises: design the failure mode and you can afford a worse component.
 
 | tokenizer | English tokens | Hebrew tokens | ratio |
 |---|---|---|---|
-| GPT-2 (English BPE) | 84 | 376 | **4.48x** |
-| XLM-R (multilingual) | 102 | 105 | **1.03x** |
+| GPT-2 (English BPE) | 54 | 234 | **4.33x** |
+| XLM-R (multilingual) | 66 | 70 | **1.06x** |
 
-Same four sentence pairs, same content. The single word `ובמסמכים` becomes **10 tokens** of
+The same four sentence pairs, same content. The single word `ובמסמכים` becomes **10 tokens** of
 byte fragments under GPT-2 and **3 tokens** under XLM-R, `▁וב`, `מס`, `מכים`, where the first
 split happens to match the morphology.
 
@@ -137,7 +137,7 @@ output, then asked for back.
 |---|---|---|---|---|
 | keep everything | 10,397 | 0% | 4/6 | 100% |
 | **summarise the old turns** | 3,433 | **67%** | **0/6** | **0%** |
-| **cap tool output on write** | 5,549 | 47% | **4/6** | 100% |
+| **cap tool output on write** | 5,549 | 46% | **4/6** | 100% |
 
 The mechanism is decided by comparing bytes, not by calling a model. A prompt cache hits only
 on an unchanged prefix. Appending leaves the prefix intact; summarising rewrites the beginning

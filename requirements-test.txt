@@ -8,7 +8,9 @@ pytest==9.1.1
 pydantic==2.12.3
 PyYAML==6.0.3
 
-# numpy 2.5 dropped Python 3.11 and earlier. Pinned per version rather than loosened, so the
-# 3.10 and 3.11 jobs in the support matrix actually resolve instead of failing at install.
+# numpy drops old Python quickly: 2.5 needs 3.12, and 2.4 needs 3.11. Pinned per interpreter
+# rather than loosened, so every version in the advertised support matrix actually resolves.
+# The rule this enforces: the matrix we claim is the matrix we test.
 numpy==2.5.3; python_version >= "3.12"
-numpy==2.4.6; python_version < "3.12"
+numpy==2.4.6; python_version == "3.11"
+numpy==2.2.6; python_version < "3.11"

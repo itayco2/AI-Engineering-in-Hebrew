@@ -66,7 +66,11 @@ def _load_cross_encoder(model_name: str):
     return CrossEncoder(model_name, device="cpu")
 
 
-DEFAULT_RERANKER = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+# Multilingual (XLM-R based), so the same reranker carries into the Hebrew chapters.
+# NOT cross-encoder/ms-marco-MiniLM-L-6-v2: on torch 2.14 its forward pass returns NaN for
+# every pair, with no error. Its parameters are clean and the bi-encoder is unaffected, so
+# nothing looks wrong -- the reranker silently becomes a no-op. See PREFLIGHT.md.
+DEFAULT_RERANKER = "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
 
 
 def cross_encoder_scorer(model_name: str = DEFAULT_RERANKER):
@@ -79,6 +83,14 @@ def cross_encoder_scorer(model_name: str = DEFAULT_RERANKER):
 
     def score(query: str, candidates: Sequence[str]) -> list[float]:
         model = _load_cross_encoder(model_name)
-        return [float(s) for s in model.predict([(query, c) for c in candidates])]
+        scores = [float(s) for s in model.predict([(query, c) for c in candidates])]
+        if any(s != s for s in scores):  # NaN != NaN
+            raise ValueError(
+                f"{model_name} returned NaN scores.\n"
+                "A NaN score is not a low score -- sorting leaves the order untouched, so the "
+                "reranker becomes a no-op that reports no error and changes no metric. "
+                "Fail here instead."
+            )
+        return scores
 
     return score

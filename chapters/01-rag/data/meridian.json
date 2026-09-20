@@ -129,6 +129,106 @@
       "id": "d26",
       "title": "Retiring old behaviour",
       "text": "A version is supported for at least twenty four months after the next one is published. Notice is given twelve months before anything stops working, and again at three months and at one month. Nothing is ever removed without the full notice period, including behaviour that was clearly a mistake."
+    },
+    {
+      "id": "d27",
+      "title": "Sessions in the dashboard",
+      "text": "A browser session in the dashboard is separate from an API token and lasts twelve hours. Signing out ends the session everywhere, including other tabs, but does not revoke any API token the account has issued. People who expect signing out to stop a running job are usually surprised by this."
+    },
+    {
+      "id": "d28",
+      "title": "Accounts that are not people",
+      "text": "A service account belongs to a project rather than to a person, which means it survives someone leaving the company. It cannot sign in to the dashboard and it cannot own billing. Automated work should always run as one of these rather than under an employee's own credentials."
+    },
+    {
+      "id": "d29",
+      "title": "Who may do what",
+      "text": "Permissions are granted through roles rather than individually. Reader may list and fetch, Writer adds creation and modification, Owner adds deletion and the ability to grant roles to others. A role is always scoped to one project, and there is deliberately no way to grant a permission outside a role."
+    },
+    {
+      "id": "d30",
+      "title": "Keys and tokens are different things",
+      "text": "An API key identifies a project and never expires; a token identifies a session and expires in an hour. Keys are appropriate for server side code you control and inappropriate for anything that ships to a user's device, because a key embedded in a mobile application is a key you have published."
+    },
+    {
+      "id": "d31",
+      "title": "Restricting where calls may come from",
+      "text": "A project can list the network addresses permitted to reach it. A call arriving from anywhere else is refused before the token is even examined, which is why an allowlist mistake looks like an authentication problem without producing an authentication error code."
+    },
+    {
+      "id": "d32",
+      "title": "Connection timed out",
+      "text": "CONN-408 means the request was accepted but the body did not arrive within thirty seconds. It is usually a slow uploader or a proxy buffering the request rather than anything wrong with the payload. Raising the client side timeout does not help, because the limit being reached is the service's own."
+    },
+    {
+      "id": "d33",
+      "title": "The payload was not acceptable",
+      "text": "VALID-422 means the request was understood but the contents failed validation. The body lists every field that failed and why, rather than stopping at the first one, so a single round trip is enough to fix a form. A field that is not in the schema at all is reported as unknown rather than ignored silently."
+    },
+    {
+      "id": "d34",
+      "title": "Out of room",
+      "text": "QUOTA-507 means the project has reached its storage allowance and can no longer accept writes. Reads continue to work. Deleting records frees the space only after the thirty day destruction window has passed, so freeing space is not an immediate remedy and raising the allowance is."
+    },
+    {
+      "id": "d35",
+      "title": "Making a retry safe",
+      "text": "Supply an idempotency key on any call that creates something. If the same key arrives twice the original result is returned rather than a second object being made. Keys are remembered for twenty four hours. Without one, a client that retries after a timeout has no way to know whether the first attempt succeeded."
+    },
+    {
+      "id": "d36",
+      "title": "When part of a stream fails",
+      "text": "A streaming export sends records as they are read. If the connection drops part way through, the records already received are valid and complete; the export simply stopped. Resume by passing the last record identifier you saw rather than starting again from the beginning."
+    },
+    {
+      "id": "d37",
+      "title": "Encrypting particular fields",
+      "text": "Individual fields can be marked so that their contents are encrypted with a key the project supplies rather than the service's own. Such fields can still be fetched but can no longer be filtered on, because the service can no longer read them. This is the trade that surprises people."
+    },
+    {
+      "id": "d38",
+      "title": "Looking after keys",
+      "text": "Keys used for storage encryption are held in a dedicated key service, never on the machines that serve requests, and every use is recorded. A project may supply its own key instead; if it is withdrawn, the data becomes permanently unreadable, which is the point of the feature and also its risk."
+    },
+    {
+      "id": "d39",
+      "title": "Pinning certificates",
+      "text": "Clients that pin a specific certificate rather than the issuing authority will stop working every ninety days when the certificate is renewed. Pin the authority if you must pin something. Most applications should pin nothing and rely on the operating system's trust store."
+    },
+    {
+      "id": "d40",
+      "title": "Leaving your network",
+      "text": "Calls go out to a small, published set of addresses that changes rarely, and the list is available as a machine readable document for firewall rules. Restricting outbound traffic to that list is supported and common in regulated environments."
+    },
+    {
+      "id": "d41",
+      "title": "Moving records between places",
+      "text": "Records cannot be moved from the region a project was created in. Copying them elsewhere means exporting and importing into a new project, and the export is a deliberate, audited action rather than a setting. This is how the residency commitment is kept honest."
+    },
+    {
+      "id": "d42",
+      "title": "Copies kept against disaster",
+      "text": "A full copy is taken nightly and kept for thirty five days, and copies are held in a second location within the same region. Restoring is a support request rather than a button, because a restore replaces live data and that is not something to do by accident."
+    },
+    {
+      "id": "d43",
+      "title": "Removing an attached file",
+      "text": "Deleting a record hides its attached files immediately, but the bytes are removed on the same thirty day schedule as the record itself. A file shared by two records survives until both are gone. There is no way to remove a file while keeping the record that points at it."
+    },
+    {
+      "id": "d44",
+      "title": "Putting results in order",
+      "text": "Listings are ordered by creation time, newest first, unless a sort field is given. Only indexed fields may be sorted on. Sorting is applied before paging, so changing the sort invalidates any cursor you are holding and you must start the listing again."
+    },
+    {
+      "id": "d45",
+      "title": "Looking for text inside records",
+      "text": "Filtering compares a field to a value; searching looks for words inside text fields and ranks what it finds. Searching is available only on fields marked as searchable when the project was set up, and marking a field later requires the existing records to be reindexed."
+    },
+    {
+      "id": "d46",
+      "title": "Somewhere to experiment",
+      "text": "Every project has a second environment with its own data and its own tokens, intended for trying things out. Nothing in it is backed up and everything in it is removed after ninety days of inactivity. A token issued in one environment is refused by the other, which produces an authentication failure that looks puzzling until you notice it."
     }
   ],
   "queries": [
@@ -278,6 +378,87 @@
         "d20"
       ],
       "kind": "paraphrase"
+    },
+    {
+      "id": "q19",
+      "question": "CONN-408",
+      "relevant": [
+        "d32"
+      ],
+      "kind": "identifier"
+    },
+    {
+      "id": "q20",
+      "question": "VALID-422",
+      "relevant": [
+        "d33"
+      ],
+      "kind": "identifier"
+    },
+    {
+      "id": "q21",
+      "question": "QUOTA-507",
+      "relevant": [
+        "d34"
+      ],
+      "kind": "identifier"
+    },
+    {
+      "id": "q22",
+      "question": "making sure a retry does not create the same thing twice",
+      "relevant": [
+        "d35"
+      ],
+      "kind": "paraphrase"
+    },
+    {
+      "id": "q23",
+      "question": "restricting which machines are allowed to connect",
+      "relevant": [
+        "d31"
+      ],
+      "kind": "paraphrase"
+    },
+    {
+      "id": "q24",
+      "question": "who is allowed to do what",
+      "relevant": [
+        "d29"
+      ],
+      "kind": "paraphrase"
+    },
+    {
+      "id": "q25",
+      "question": "trying things out without touching real data",
+      "relevant": [
+        "d46"
+      ],
+      "kind": "paraphrase"
+    },
+    {
+      "id": "q26",
+      "question": "getting a file back after somebody removed it",
+      "relevant": [
+        "d43",
+        "d42"
+      ],
+      "kind": "paraphrase"
+    },
+    {
+      "id": "q27",
+      "question": "changing the order results come back in",
+      "relevant": [
+        "d44"
+      ],
+      "kind": "mixed"
+    },
+    {
+      "id": "q28",
+      "question": "a credential that never expires for server side code",
+      "relevant": [
+        "d30"
+      ],
+      "kind": "mixed"
     }
   ]
 }

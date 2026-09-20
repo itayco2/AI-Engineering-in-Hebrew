@@ -36,6 +36,12 @@ run-01:  ## execute chapter 01 end to end
 run-02:  ## execute chapter 02 end to end
 	AIHE_BACKEND=replay $(PY) -m pytest --nbmake chapters/01-rag/chapter.ipynb
 
+run-04:  ## execute chapter 04 end to end
+	AIHE_BACKEND=replay $(PY) -m pytest --nbmake chapters/04-context/chapter.ipynb
+
+run-05:  ## execute chapter 05 end to end
+	AIHE_BACKEND=replay $(PY) -m pytest --nbmake chapters/05-agents/chapter.ipynb
+
 record:  ## re-record cassettes from a real model, then review the diff
 	$(PY) scripts/record_cassettes.py
 

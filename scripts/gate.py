@@ -10,6 +10,7 @@ Run: python scripts/gate.py    (or: make gate)
 
 from __future__ import annotations
 
+import os
 import sys
 import time
 from pathlib import Path
@@ -87,20 +88,24 @@ def main() -> int:
         yaml.safe_load((c / "meta.yml").read_text(encoding="utf-8")).get("needs_llm")
         for c in chapters
     )
+    requested = os.environ.get("AIHE_BACKEND", "").strip().lower()
     if not wants_model:
         _report(SKIP, "chat backend", "no chapter needs generation yet")
+    elif requested in ("", "replay"):
+        # A live model is optional here, and that is the point: every chapter that needs
+        # generation ships its replies. Failing because a model nobody asked for is not running
+        # would make this gate lie about a repository that works perfectly without one.
+        _report(SKIP, "chat backend", "not requested - chapters replay from cassettes")
     else:
         try:
             from aihe.models import backend_name, chat
 
             name = backend_name()
-            if name == "replay":
-                _report(SKIP, "chat backend", "replay mode reads cassettes")
-            else:
-                chat([{"role": "user", "content": "say ok"}])
-                _report(PASS, "chat backend", name)
+            chat([{"role": "user", "content": "say ok"}], max_tokens=8)
+            _report(PASS, "chat backend", name)
         except Exception as exc:
-            _report(FAIL, "chat backend", str(exc).splitlines()[0])
+            # Asked for explicitly and unreachable. That is a real failure.
+            _report(FAIL, f"chat backend ({requested})", str(exc).splitlines()[0])
             failures += 1
 
     elapsed = time.time() - started

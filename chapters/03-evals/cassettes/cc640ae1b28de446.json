@@ -1,0 +1,22 @@
+{
+  "key": "cc640ae1b28de446",
+  "model": "Llama-3.2-3B-Instruct-Q4_K_M",
+  "request": {
+    "messages": [
+      {
+        "content": "You are checking one specific fact. Answer with a single word, yes or no.\n\nQuestion asked: How many requests may a project make per minute?\nAnswer given: The default budget is six hundred requests per minute per project, counted across every environment together.\n\nDoes the answer state that the limit is six hundred requests per minute? Answer yes or no.",
+        "role": "user"
+      }
+    ],
+    "params": {
+      "max_tokens": 64,
+      "seed": 7,
+      "temperature": 0.0
+    },
+    "tools": null
+  },
+  "response": {
+    "text": "Yes.",
+    "tool_calls": []
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "key": "9c944ed54702539c",
+  "model": "Llama-3.2-3B-Instruct-Q4_K_M",
+  "request": {
+    "messages": [
+      {
+        "content": "Rate this reply from 1 to 5, where 5 is an excellent, helpful reply.\n\nQuestion asked: How many requests may a project make per minute?\nReply: Each project has a request budget measured in a sliding window and counted across all environments together. Exceeding it returns RATE-429 with a Retry-After header.\n\nAnswer with the number only.",
+        "role": "user"
+      }
+    ],
+    "params": {
+      "max_tokens": 64,
+      "seed": 7,
+      "temperature": 0.0
+    },
+    "tools": null
+  },
+  "response": {
+    "text": "3",
+    "tool_calls": []
+  }
+}

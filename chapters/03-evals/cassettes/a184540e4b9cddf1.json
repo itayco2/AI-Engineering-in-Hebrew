@@ -1,0 +1,22 @@
+{
+  "key": "a184540e4b9cddf1",
+  "model": "Llama-3.2-3B-Instruct-Q4_K_M",
+  "request": {
+    "messages": [
+      {
+        "content": "You are checking one specific fact. Answer with a single word, yes or no.\n\nQuestion asked: How many items does a listing return at a time?\nAnswer given: Listings are paginated with a cursor that encodes a position rather than an offset, so records inserted mid-listing will not cause you to skip or repeat an item.\n\nDoes the answer state that a listing returns one hundred items at a time? Answer yes or no.",
+        "role": "user"
+      }
+    ],
+    "params": {
+      "max_tokens": 64,
+      "seed": 7,
+      "temperature": 0.0
+    },
+    "tools": null
+  },
+  "response": {
+    "text": "No.",
+    "tool_calls": []
+  }
+}

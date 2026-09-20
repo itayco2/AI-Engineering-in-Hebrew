@@ -1,0 +1,22 @@
+{
+  "key": "c92747d915ea8554",
+  "model": "Llama-3.2-3B-Instruct-Q4_K_M",
+  "request": {
+    "messages": [
+      {
+        "content": "system: Earlier we set up a project and ran several indexing and pagination jobs. Everything succeeded and there were no errors.\nassistant: בסדר.\ntool: GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=cursor_8823 200 in 44ms; GET /v1/records?after=cursor_8824 200 in 39ms; GET /v1/records?after=cursor_8825 200 in 52ms; GET /v1/records?after=cursor_8826 200 in 37ms; GET /v1/records?after=cursor_8827 200 in 40ms [batch 4]\nassistant: בסדר.\nuser: What is the deploy code? Answer with the code only.\n",
+        "role": "user"
+      }
+    ],
+    "params": {
+      "max_tokens": 64,
+      "seed": 7,
+      "temperature": 0.0
+    },
+    "tools": null
+  },
+  "response": {
+    "text": "git add .\ngit commit -m \"indexing and pagination jobs succeeded\"\ngit push origin main",
+    "tool_calls": []
+  }
+}

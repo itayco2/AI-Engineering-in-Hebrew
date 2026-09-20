@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aihe"
-version = "0.1.0"
+version = "1.0.0"
 description = "AI Engineering in Hebrew - the code behind the chapters"
 readme = "README.md"
 requires-python = ">=3.10"

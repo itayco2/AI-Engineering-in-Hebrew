@@ -1,0 +1,83 @@
+{
+ "max_attempts": 3,
+ "tools": [
+  {
+   "name": "search_docs",
+   "description": "Search the documentation.",
+   "parameters": [
+    {
+     "name": "query",
+     "type": "string",
+     "description": "what to look for"
+    },
+    {
+     "name": "limit",
+     "type": "integer",
+     "description": "how many results",
+     "required": false
+    },
+    {
+     "name": "scope",
+     "type": "string",
+     "description": "which section",
+     "required": false,
+     "enum": [
+      "api",
+      "guides",
+      "errors"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "search_documentation_corpus",
+   "description": "Search the documentation corpus for passages matching a natural language query. This tool performs hybrid retrieval over the indexed documentation, combining a dense vector search with a sparse keyword index, and returns the highest scoring passages together with their source document identifiers and section headings. Use it whenever the user asks a question whose answer is likely to be written down somewhere in the product documentation rather than something you already know. Prefer a specific query over a broad one, and narrow the scope when the user has clearly indicated which part of the documentation they mean.",
+   "parameters": [
+    {
+     "name": "query",
+     "type": "string",
+     "description": "the natural language query to search for, phrased as the user would"
+    },
+    {
+     "name": "limit",
+     "type": "integer",
+     "description": "maximum number of passages to return, between 1 and 50",
+     "required": false
+    },
+    {
+     "name": "scope",
+     "type": "string",
+     "description": "restrict the search to one section of the documentation",
+     "required": false,
+     "enum": [
+      "api",
+      "guides",
+      "errors"
+     ]
+    },
+    {
+     "name": "rerank",
+     "type": "boolean",
+     "description": "whether to re-score the shortlist with a cross-encoder",
+     "required": false
+    },
+    {
+     "name": "min_score",
+     "type": "number",
+     "description": "discard passages scoring below this threshold",
+     "required": false
+    }
+   ]
+  }
+ ],
+ "tasks": [
+  "Find out how long an access token is valid.",
+  "Look up what AUTH-401 means, in the errors section.",
+  "Search the guides for how pagination cursors work.",
+  "Find the request rate limit. Just the top 3 results.",
+  "What does TS-999 mean?",
+  "Look up how batch writes handle partial failure.",
+  "Find the retention period for deleted records.",
+  "Search the api section for the renew endpoint."
+ ]
+}

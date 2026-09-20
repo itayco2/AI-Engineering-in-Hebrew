@@ -1,0 +1,22 @@
+{
+  "key": "3444bf0abd33101b",
+  "model": "Llama-3.2-3B-Instruct-Q4_K_M",
+  "request": {
+    "messages": [
+      {
+        "content": "Rate this reply from 1 to 5, where 5 is an excellent, helpful reply.\n\nQuestion asked: How many records fit in one batch write?\nReply: Up to five hundred records can be submitted in a single call, and the whole submission either succeeds or fails.\n\nAnswer with the number only.",
+        "role": "user"
+      }
+    ],
+    "params": {
+      "max_tokens": 64,
+      "seed": 7,
+      "temperature": 0.0
+    },
+    "tools": null
+  },
+  "response": {
+    "text": "4",
+    "tool_calls": []
+  }
+}

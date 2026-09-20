@@ -65,3 +65,17 @@ invisible: a model that loads, runs, costs its full inference time, and is quiet
 raised anything. Both were caught by a number that could not be explained any other way — a
 reranker that changed an order-sensitive metric by exactly zero, and a segmenter that split a
 word every Hebrew speaker knows is one piece.
+
+## Chapters 03-05
+
+| # | what was wrong | the number that showed it | fix | the number after |
+|---|---|---|---|---|
+| 8 | **Recording was not idempotent.** Asking the same prompt twice in one run re-recorded it, and generated text is not reproducible even at `temperature 0`, so the second reply overwrote the first and replay then walked a path that had never been recorded | `CassetteMiss` on the fourth of four chapter 05 variants, after a run that had reported 42 calls written successfully | `aihe.models.asker` skips a request already present in the library; re-recording is what a clean `make record` is for | all four variants replay, 26 cassettes, no misses |
+| 9 | **A notebook defined logic.** Chapter 05's first draft declared `run()` and `ask()` in a cell — the exact thing this repo forbids | `tests/test_no_logic.py` failed on `05-agents` while 313 other tests passed | moved to `aihe.tools.run_tasks`, which the recorder now calls too, so the prompts cannot drift apart | the rule holds across all five chapters |
+| 10 | **The validator rejected correct answers.** A model answering `null` for an optional key was refused, though the schema itself said the key was optional | `89%` of all first-attempt failures, across both a one-line and a six-line tool description | `null_is_absent=True` in `aihe.tools.validate`, for optional parameters only | wide schema first-try `12%` → `88%`; narrow `75%` → `100%` |
+
+Defect 9 is the one worth pausing on. The rule was written on day one, argued for in
+`CONTRIBUTING.md`, enforced by a test — and then broken by the person who wrote it, in the last
+chapter. It was caught in under a second by a test that knows nothing about what the notebook
+was trying to do. That is the entire argument for spending the first day on infrastructure
+rather than content.

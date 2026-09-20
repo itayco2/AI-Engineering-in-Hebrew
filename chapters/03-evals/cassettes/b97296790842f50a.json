@@ -1,0 +1,22 @@
+{
+  "key": "b97296790842f50a",
+  "model": "Llama-3.2-3B-Instruct-Q4_K_M",
+  "request": {
+    "messages": [
+      {
+        "content": "You are checking one specific fact. Answer with a single word, yes or no.\n\nQuestion asked: How long is an idempotency key remembered?\nAnswer given: Idempotency keys are remembered for twenty four hours; the same key returns the original result.\n\nDoes the answer state that idempotency keys are remembered for twenty four hours? Answer yes or no.",
+        "role": "user"
+      }
+    ],
+    "params": {
+      "max_tokens": 64,
+      "seed": 7,
+      "temperature": 0.0
+    },
+    "tools": null
+  },
+  "response": {
+    "text": "No.",
+    "tool_calls": []
+  }
+}

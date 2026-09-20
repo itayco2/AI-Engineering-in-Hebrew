@@ -1,0 +1,22 @@
+{
+  "key": "626f8c1e06c41c6d",
+  "model": "Llama-3.2-3B-Instruct-Q4_K_M",
+  "request": {
+    "messages": [
+      {
+        "content": "Rate this reply from 1 to 5, where 5 is an excellent, helpful reply.\n\nQuestion asked: How long is a deleted record recoverable?\nReply: A deleted record is hidden immediately and destroyed thirty days later; it can be restored during that window.\n\nAnswer with the number only.",
+        "role": "user"
+      }
+    ],
+    "params": {
+      "max_tokens": 64,
+      "seed": 7,
+      "temperature": 0.0
+    },
+    "tools": null
+  },
+  "response": {
+    "text": "4",
+    "tool_calls": []
+  }
+}

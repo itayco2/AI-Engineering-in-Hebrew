@@ -1,0 +1,22 @@
+{
+  "key": "39ebb85052e43b5a",
+  "model": "Llama-3.2-3B-Instruct-Q4_K_M",
+  "request": {
+    "messages": [
+      {
+        "content": "Rate this reply from 1 to 5, where 5 is an excellent, helpful reply.\n\nQuestion asked: How long do refresh tokens last?\nReply: Refresh tokens are long lived and single use: each renewal returns both a new access token and a new refresh token, and the old one is discarded immediately.\n\nAnswer with the number only.",
+        "role": "user"
+      }
+    ],
+    "params": {
+      "max_tokens": 64,
+      "seed": 7,
+      "temperature": 0.0
+    },
+    "tools": null
+  },
+  "response": {
+    "text": "3",
+    "tool_calls": []
+  }
+}

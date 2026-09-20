@@ -2,6 +2,37 @@
 
 Notable changes, newest first. This project follows [semantic versioning](https://semver.org/).
 
+## [1.0.0] - 2026-09-20
+
+Five chapters, written, measured and executed on every push. 341 tests in about a fifth of a
+second; the whole course runs end to end in roughly seventy seconds and never touches the
+network.
+
+### Added in 1.0
+- **Chapter 03 — How you know it works.** Retrieval metrics with no model at all, then
+  `LLM-as-judge` measured against ground truth known by construction. A holistic judge told the
+  good answer from the bad one on **6 of 12** questions — exactly what a coin gets — while a
+  substring check with no model in it was right on all 24.
+- **Chapter 04 — Context engineering.** Summarising saved **67%** of the characters and lost the
+  planted fact **6 times out of 6**; capping tool output on write saved 47% and lost nothing.
+  The mechanism is decided by comparing bytes: a cache hits only on an unchanged prefix.
+- **Chapter 05 — Agents.** The same tool described in one line and in six: first-try success
+  fell from **75% to 12%**. And **89% of every first-attempt failure** was the model answering
+  `null` for an *optional* parameter and a strict validator refusing it. Reading `null` as
+  "absent" took the wide schema from 12% to **88%**.
+- `aihe.judge`, `aihe.context` and `aihe.tools`, all pure and all covered.
+- Cassettes: every model reply in chapters 03-05 recorded once from a local
+  `Llama-3.2-3B-Instruct-Q4_K_M`, so the chapters run offline and CI costs nothing.
+
+### Fixed in 1.0
+- Recording was not idempotent. Asking the same prompt twice in one run re-recorded it, and
+  since generated text is not reproducible even at `temperature 0`, the second reply overwrote
+  the first and replay walked a path that had never been recorded.
+- The validator rejected correct answers: `null` for an optional key is a model declining an
+  option, not an error.
+- A notebook defined logic. The rule was written on day one and broken in the last chapter, by
+  the person who wrote it. `tests/test_no_logic.py` caught it in under a second.
+
 ## [Unreleased]
 
 ### Added

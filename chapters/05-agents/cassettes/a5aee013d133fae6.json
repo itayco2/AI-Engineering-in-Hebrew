@@ -1,0 +1,22 @@
+{
+  "key": "a5aee013d133fae6",
+  "model": "Llama-3.2-3B-Instruct-Q4_K_M",
+  "request": {
+    "messages": [
+      {
+        "content": "Call search_documentation_corpus. Search the documentation corpus for passages matching a natural language query. This tool performs hybrid retrieval over the indexed documentation, combining a dense vector search with a sparse keyword index, and returns the highest scoring passages together with their source document identifiers and section headings. Use it whenever the user asks a question whose answer is likely to be written down somewhere in the product documentation rather than something you already know. Prefer a specific query over a broad one, and narrow the scope when the user has clearly indicated which part of the documentation they mean.\nReply with JSON only, with keys:\n  query: string\n  limit: integer (optional)\n  scope: string one of ['api', 'guides', 'errors'] (optional)\n  rerank: boolean (optional)\n  min_score: number (optional)\n\nTask: Look up how batch writes handle partial failure.",
+        "role": "user"
+      }
+    ],
+    "params": {
+      "max_tokens": 64,
+      "seed": 7,
+      "temperature": 0.0
+    },
+    "tools": null
+  },
+  "response": {
+    "text": "{\"query\": \"batch writes partial failure\", \"limit\": null, \"scope\": \"guides\", \"rerank\": true, \"min_score\": null}",
+    "tool_calls": []
+  }
+}

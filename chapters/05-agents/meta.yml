@@ -1,0 +1,17 @@
+id: "05-agents"
+title_he: "סוכנים: לולאה, כלים, וג'ייסון שבור"
+title_en: "Agents: the loop, the tools, and the broken JSON"
+needs_llm: true
+ram_gb: 4
+est_minutes: 30
+datasets:
+  - "data/tool-tasks.json"
+models:
+  - "Llama-3.2-3B-Instruct-Q4_K_M"
+terms:
+  - agent
+  - workflow
+  - tool call
+  - tool schema
+  - JSON
+headline: "the same tool, described in one line and in six, and what that does to a 3B model"

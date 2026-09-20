@@ -1,0 +1,22 @@
+{
+  "key": "21d5400e234c376c",
+  "model": "Llama-3.2-3B-Instruct-Q4_K_M",
+  "request": {
+    "messages": [
+      {
+        "content": "Call search_docs. Search the documentation.\nReply with JSON only, with keys:\n  query: string\n  limit: integer (optional)\n  scope: string one of ['api', 'guides', 'errors'] (optional)\n\nTask: Look up how batch writes handle partial failure.",
+        "role": "user"
+      }
+    ],
+    "params": {
+      "max_tokens": 64,
+      "seed": 7,
+      "temperature": 0.0
+    },
+    "tools": null
+  },
+  "response": {
+    "text": "{\n  \"query\": \"batch writes partial failure\",\n  \"limit\": 10,\n  \"scope\": \"api\"\n}",
+    "tool_calls": []
+  }
+}

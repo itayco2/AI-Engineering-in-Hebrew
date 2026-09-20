@@ -1,0 +1,72 @@
+{
+ "summary": "Earlier we set up a project and ran several indexing and pagination jobs. Everything succeeded and there were no errors.",
+ "cap": 120,
+ "probes": [
+  {
+   "fact": "Remember this: the deploy code is TANGERINE-7741.",
+   "question": "What is the deploy code? Answer with the code only.",
+   "filler": [
+    "GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=cursor_8823 200 in 44ms; GET /v1/records?after=cursor_8824 200 in 39ms; GET /v1/records?after=cursor_8825 200 in 52ms; GET /v1/records?after=cursor_8826 200 in 37ms; GET /v1/records?after=cursor_8827 200 in 40ms [batch 0]",
+    "indexed 1284 documents in 6.2s; segments merged 14 -> 3; heap 412MB; cache warm; shard 0 ok; shard 1 ok; shard 2 ok; shard 3 ok; vacuum skipped; checkpoint written; replication lag 0ms; no errors reported during this pass [batch 1]",
+    "GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=cursor_8823 200 in 44ms; GET /v1/records?after=cursor_8824 200 in 39ms; GET /v1/records?after=cursor_8825 200 in 52ms; GET /v1/records?after=cursor_8826 200 in 37ms; GET /v1/records?after=cursor_8827 200 in 40ms [batch 2]",
+    "indexed 1284 documents in 6.2s; segments merged 14 -> 3; heap 412MB; cache warm; shard 0 ok; shard 1 ok; shard 2 ok; shard 3 ok; vacuum skipped; checkpoint written; replication lag 0ms; no errors reported during this pass [batch 3]",
+    "GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=cursor_8823 200 in 44ms; GET /v1/records?after=cursor_8824 200 in 39ms; GET /v1/records?after=cursor_8825 200 in 52ms; GET /v1/records?after=cursor_8826 200 in 37ms; GET /v1/records?after=cursor_8827 200 in 40ms [batch 4]"
+   ]
+  },
+  {
+   "fact": "Remember this: the fallback region is eu-west-3.",
+   "question": "What is the fallback region? Answer with the region only.",
+   "filler": [
+    "GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=cursor_8823 200 in 44ms; GET /v1/records?after=cursor_8824 200 in 39ms; GET /v1/records?after=cursor_8825 200 in 52ms; GET /v1/records?after=cursor_8826 200 in 37ms; GET /v1/records?after=cursor_8827 200 in 40ms [batch 0]",
+    "indexed 1284 documents in 6.2s; segments merged 14 -> 3; heap 412MB; cache warm; shard 0 ok; shard 1 ok; shard 2 ok; shard 3 ok; vacuum skipped; checkpoint written; replication lag 0ms; no errors reported during this pass [batch 1]",
+    "GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=cursor_8823 200 in 44ms; GET /v1/records?after=cursor_8824 200 in 39ms; GET /v1/records?after=cursor_8825 200 in 52ms; GET /v1/records?after=cursor_8826 200 in 37ms; GET /v1/records?after=cursor_8827 200 in 40ms [batch 2]",
+    "indexed 1284 documents in 6.2s; segments merged 14 -> 3; heap 412MB; cache warm; shard 0 ok; shard 1 ok; shard 2 ok; shard 3 ok; vacuum skipped; checkpoint written; replication lag 0ms; no errors reported during this pass [batch 3]",
+    "GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=cursor_8823 200 in 44ms; GET /v1/records?after=cursor_8824 200 in 39ms; GET /v1/records?after=cursor_8825 200 in 52ms; GET /v1/records?after=cursor_8826 200 in 37ms; GET /v1/records?after=cursor_8827 200 in 40ms [batch 4]"
+   ]
+  },
+  {
+   "fact": "Remember this: the retention window is 41 days.",
+   "question": "How many days is the retention window? Answer with the number only.",
+   "filler": [
+    "GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=cursor_8823 200 in 44ms; GET /v1/records?after=cursor_8824 200 in 39ms; GET /v1/records?after=cursor_8825 200 in 52ms; GET /v1/records?after=cursor_8826 200 in 37ms; GET /v1/records?after=cursor_8827 200 in 40ms [batch 0]",
+    "indexed 1284 documents in 6.2s; segments merged 14 -> 3; heap 412MB; cache warm; shard 0 ok; shard 1 ok; shard 2 ok; shard 3 ok; vacuum skipped; checkpoint written; replication lag 0ms; no errors reported during this pass [batch 1]",
+    "GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=cursor_8823 200 in 44ms; GET /v1/records?after=cursor_8824 200 in 39ms; GET /v1/records?after=cursor_8825 200 in 52ms; GET /v1/records?after=cursor_8826 200 in 37ms; GET /v1/records?after=cursor_8827 200 in 40ms [batch 2]",
+    "indexed 1284 documents in 6.2s; segments merged 14 -> 3; heap 412MB; cache warm; shard 0 ok; shard 1 ok; shard 2 ok; shard 3 ok; vacuum skipped; checkpoint written; replication lag 0ms; no errors reported during this pass [batch 3]",
+    "GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=cursor_8823 200 in 44ms; GET /v1/records?after=cursor_8824 200 in 39ms; GET /v1/records?after=cursor_8825 200 in 52ms; GET /v1/records?after=cursor_8826 200 in 37ms; GET /v1/records?after=cursor_8827 200 in 40ms [batch 4]"
+   ]
+  },
+  {
+   "fact": "Remember this: the on-call engineer is Dana Levi.",
+   "question": "Who is the on-call engineer? Answer with the name only.",
+   "filler": [
+    "GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=cursor_8823 200 in 44ms; GET /v1/records?after=cursor_8824 200 in 39ms; GET /v1/records?after=cursor_8825 200 in 52ms; GET /v1/records?after=cursor_8826 200 in 37ms; GET /v1/records?after=cursor_8827 200 in 40ms [batch 0]",
+    "indexed 1284 documents in 6.2s; segments merged 14 -> 3; heap 412MB; cache warm; shard 0 ok; shard 1 ok; shard 2 ok; shard 3 ok; vacuum skipped; checkpoint written; replication lag 0ms; no errors reported during this pass [batch 1]",
+    "GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=cursor_8823 200 in 44ms; GET /v1/records?after=cursor_8824 200 in 39ms; GET /v1/records?after=cursor_8825 200 in 52ms; GET /v1/records?after=cursor_8826 200 in 37ms; GET /v1/records?after=cursor_8827 200 in 40ms [batch 2]",
+    "indexed 1284 documents in 6.2s; segments merged 14 -> 3; heap 412MB; cache warm; shard 0 ok; shard 1 ok; shard 2 ok; shard 3 ok; vacuum skipped; checkpoint written; replication lag 0ms; no errors reported during this pass [batch 3]",
+    "GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=cursor_8823 200 in 44ms; GET /v1/records?after=cursor_8824 200 in 39ms; GET /v1/records?after=cursor_8825 200 in 52ms; GET /v1/records?after=cursor_8826 200 in 37ms; GET /v1/records?after=cursor_8827 200 in 40ms [batch 4]"
+   ]
+  },
+  {
+   "fact": "Remember this: the batch size limit is 317 records.",
+   "question": "What is the batch size limit? Answer with the number only.",
+   "filler": [
+    "GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=cursor_8823 200 in 44ms; GET /v1/records?after=cursor_8824 200 in 39ms; GET /v1/records?after=cursor_8825 200 in 52ms; GET /v1/records?after=cursor_8826 200 in 37ms; GET /v1/records?after=cursor_8827 200 in 40ms [batch 0]",
+    "indexed 1284 documents in 6.2s; segments merged 14 -> 3; heap 412MB; cache warm; shard 0 ok; shard 1 ok; shard 2 ok; shard 3 ok; vacuum skipped; checkpoint written; replication lag 0ms; no errors reported during this pass [batch 1]",
+    "GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=cursor_8823 200 in 44ms; GET /v1/records?after=cursor_8824 200 in 39ms; GET /v1/records?after=cursor_8825 200 in 52ms; GET /v1/records?after=cursor_8826 200 in 37ms; GET /v1/records?after=cursor_8827 200 in 40ms [batch 2]",
+    "indexed 1284 documents in 6.2s; segments merged 14 -> 3; heap 412MB; cache warm; shard 0 ok; shard 1 ok; shard 2 ok; shard 3 ok; vacuum skipped; checkpoint written; replication lag 0ms; no errors reported during this pass [batch 3]",
+    "GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=cursor_8823 200 in 44ms; GET /v1/records?after=cursor_8824 200 in 39ms; GET /v1/records?after=cursor_8825 200 in 52ms; GET /v1/records?after=cursor_8826 200 in 37ms; GET /v1/records?after=cursor_8827 200 in 40ms [batch 4]"
+   ]
+  },
+  {
+   "fact": "Remember this: the escalation channel is #storm-relay.",
+   "question": "What is the escalation channel? Answer with the channel only.",
+   "filler": [
+    "GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=cursor_8823 200 in 44ms; GET /v1/records?after=cursor_8824 200 in 39ms; GET /v1/records?after=cursor_8825 200 in 52ms; GET /v1/records?after=cursor_8826 200 in 37ms; GET /v1/records?after=cursor_8827 200 in 40ms [batch 0]",
+    "indexed 1284 documents in 6.2s; segments merged 14 -> 3; heap 412MB; cache warm; shard 0 ok; shard 1 ok; shard 2 ok; shard 3 ok; vacuum skipped; checkpoint written; replication lag 0ms; no errors reported during this pass [batch 1]",
+    "GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=cursor_8823 200 in 44ms; GET /v1/records?after=cursor_8824 200 in 39ms; GET /v1/records?after=cursor_8825 200 in 52ms; GET /v1/records?after=cursor_8826 200 in 37ms; GET /v1/records?after=cursor_8827 200 in 40ms [batch 2]",
+    "indexed 1284 documents in 6.2s; segments merged 14 -> 3; heap 412MB; cache warm; shard 0 ok; shard 1 ok; shard 2 ok; shard 3 ok; vacuum skipped; checkpoint written; replication lag 0ms; no errors reported during this pass [batch 3]",
+    "GET /v1/records?after=cursor_8821 200 in 41ms; GET /v1/records?after=cursor_8822 200 in 38ms; GET /v1/records?after=cursor_8823 200 in 44ms; GET /v1/records?after=cursor_8824 200 in 39ms; GET /v1/records?after=cursor_8825 200 in 52ms; GET /v1/records?after=cursor_8826 200 in 37ms; GET /v1/records?after=cursor_8827 200 in 40ms [batch 4]"
+   ]
+  }
+ ]
+}

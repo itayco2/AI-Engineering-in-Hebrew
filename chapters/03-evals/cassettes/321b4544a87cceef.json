@@ -1,0 +1,22 @@
+{
+  "key": "321b4544a87cceef",
+  "model": "Llama-3.2-3B-Instruct-Q4_K_M",
+  "request": {
+    "messages": [
+      {
+        "content": "You are checking one specific fact. Answer with a single word, yes or no.\n\nQuestion asked: How much storage may one project hold?\nAnswer given: Projects have both a record count limit and a total size limit. Reaching either stops writes but never stops reads, so the application keeps serving users while somebody fixes it.\n\nDoes the answer state that a project may hold fifty gigabytes? Answer yes or no.",
+        "role": "user"
+      }
+    ],
+    "params": {
+      "max_tokens": 64,
+      "seed": 7,
+      "temperature": 0.0
+    },
+    "tools": null
+  },
+  "response": {
+    "text": "No.",
+    "tool_calls": []
+  }
+}

@@ -4,4 +4,4 @@ Every function a chapter uses lives here, not in a notebook. A notebook cell imp
 calls, and shows. See CONTRIBUTING.md for why that rule is not negotiable.
 """
 
-__version__ = "0.1.0"
+__version__ = "1.0.0"

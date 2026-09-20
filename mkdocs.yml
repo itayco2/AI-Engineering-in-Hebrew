@@ -70,6 +70,15 @@ nav:
   - "פרק 02 — RAG בעברית":
       - הפרק: chapters/02-hebrew-rag/chapter.ipynb
       - שאלות ריאיון: chapters/02-hebrew-rag/interview.md
+  - "פרק 03 — איך יודעים שזה עובד":
+      - הפרק: chapters/03-evals/chapter.ipynb
+      - שאלות ריאיון: chapters/03-evals/interview.md
+  - "פרק 04 — הנדסת הקשר":
+      - הפרק: chapters/04-context/chapter.ipynb
+      - שאלות ריאיון: chapters/04-context/interview.md
+  - "פרק 05 — סוכנים":
+      - הפרק: chapters/05-agents/chapter.ipynb
+      - שאלות ריאיון: chapters/05-agents/interview.md
   - מילון המונחים: TERMS.md
   - מה נמדד ולמה: FINDINGS.md
   - איך נמדדו המספרים: PREFLIGHT.md

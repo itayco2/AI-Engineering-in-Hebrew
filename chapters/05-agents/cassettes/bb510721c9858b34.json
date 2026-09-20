@@ -1,0 +1,22 @@
+{
+  "key": "bb510721c9858b34",
+  "model": "Llama-3.2-3B-Instruct-Q4_K_M",
+  "request": {
+    "messages": [
+      {
+        "content": "Call search_docs. Search the documentation.\nReply with JSON only, with keys:\n  query: string\n  limit: integer (optional)\n  scope: string one of ['api', 'guides', 'errors'] (optional)\n\nTask: What does TS-999 mean?",
+        "role": "user"
+      }
+    ],
+    "params": {
+      "max_tokens": 64,
+      "seed": 7,
+      "temperature": 0.0
+    },
+    "tools": null
+  },
+  "response": {
+    "text": "{\n  \"query\": \"TS-999\",\n  \"limit\": null,\n  \"scope\": null\n}",
+    "tool_calls": []
+  }
+}

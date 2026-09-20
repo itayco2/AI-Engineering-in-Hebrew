@@ -1,0 +1,22 @@
+{
+  "key": "6b1f884718253668",
+  "model": "Llama-3.2-3B-Instruct-Q4_K_M",
+  "request": {
+    "messages": [
+      {
+        "content": "You are checking one specific fact. Answer with a single word, yes or no.\n\nQuestion asked: What does AUTH-401 mean?\nAnswer given: AUTH-401 is returned when the Authorization header is missing, malformed, or expired. The body names which of the three it was.\n\nDoes the answer state that AUTH-401 covers a missing, malformed or expired token? Answer yes or no.",
+        "role": "user"
+      }
+    ],
+    "params": {
+      "max_tokens": 64,
+      "seed": 7,
+      "temperature": 0.0
+    },
+    "tools": null
+  },
+  "response": {
+    "text": "No.",
+    "tool_calls": []
+  }
+}

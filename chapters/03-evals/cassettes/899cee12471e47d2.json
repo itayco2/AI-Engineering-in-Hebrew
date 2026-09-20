@@ -1,0 +1,22 @@
+{
+  "key": "899cee12471e47d2",
+  "model": "Llama-3.2-3B-Instruct-Q4_K_M",
+  "request": {
+    "messages": [
+      {
+        "content": "You are checking one specific fact. Answer with a single word, yes or no.\n\nQuestion asked: How long is the audit trail retained?\nAnswer given: Audit entries are retained for four hundred days and can be exported.\n\nDoes the answer state that the audit trail is kept for four hundred days? Answer yes or no.",
+        "role": "user"
+      }
+    ],
+    "params": {
+      "max_tokens": 64,
+      "seed": 7,
+      "temperature": 0.0
+    },
+    "tools": null
+  },
+  "response": {
+    "text": "Yes.",
+    "tool_calls": []
+  }
+}

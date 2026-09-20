@@ -1,0 +1,22 @@
+{
+  "key": "8a5971f6f734f46c",
+  "model": "Llama-3.2-3B-Instruct-Q4_K_M",
+  "request": {
+    "messages": [
+      {
+        "content": "You are checking one specific fact. Answer with a single word, yes or no.\n\nQuestion asked: How long is an access token valid?\nAnswer given: Access tokens are short lived by design. Long-running jobs are expected to renew them periodically rather than holding a single token open for the whole run.\n\nDoes the answer state that the token is valid for sixty minutes? Answer yes or no.",
+        "role": "user"
+      }
+    ],
+    "params": {
+      "max_tokens": 64,
+      "seed": 7,
+      "temperature": 0.0
+    },
+    "tools": null
+  },
+  "response": {
+    "text": "No.",
+    "tool_calls": []
+  }
+}

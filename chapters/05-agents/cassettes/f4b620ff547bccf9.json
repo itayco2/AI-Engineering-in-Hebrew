@@ -1,0 +1,22 @@
+{
+  "key": "f4b620ff547bccf9",
+  "model": "Llama-3.2-3B-Instruct-Q4_K_M",
+  "request": {
+    "messages": [
+      {
+        "content": "Call search_docs. Search the documentation.\nReply with JSON only, with keys:\n  query: string\n  limit: integer (optional)\n  scope: string one of ['api', 'guides', 'errors'] (optional)\n\nTask: Search the guides for how pagination cursors work.",
+        "role": "user"
+      }
+    ],
+    "params": {
+      "max_tokens": 64,
+      "seed": 7,
+      "temperature": 0.0
+    },
+    "tools": null
+  },
+  "response": {
+    "text": "{\"query\":\"pagination cursors\", \"limit\":null, \"scope\":\"guides\"}",
+    "tool_calls": []
+  }
+}

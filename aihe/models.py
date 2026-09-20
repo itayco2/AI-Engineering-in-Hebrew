@@ -89,8 +89,21 @@ def record(
     model: str = DEFAULT_MODEL,
     **params: Any,
 ) -> Path:
-    """Call a real model and write the answer to a cassette. Used only by `make record`."""
-    from aihe.backends.ollama import complete
+    """Call a real model and write the answer to a cassette. Used only by `make record`.
+
+    Uses whichever live backend `AIHE_BACKEND` names. Recording from `replay` would be circular
+    and recording from `fake` would write fiction, so both are refused.
+    """
+    name = backend_name()
+    if name in ("replay", "fake"):
+        raise ValueError(
+            f"cannot record from the {name!r} backend - it makes no real call.\n"
+            "Set AIHE_BACKEND=llamacpp (with AIHE_GGUF) or AIHE_BACKEND=ollama."
+        )
+    if name == "llamacpp":
+        from aihe.backends.llamacpp import complete
+    else:
+        from aihe.backends.ollama import complete
 
     response = complete(messages, tools, model, **params)
     library = CassetteLibrary(Path(cassettes))
@@ -101,6 +114,39 @@ def record(
         response={"text": response.text, "tool_calls": response.tool_calls},
         model=model,
     )
+
+
+def asker(
+    cassettes: str | Path | None = None,
+    model: str = DEFAULT_MODEL,
+    record_to: str | Path | None = None,
+    **params: Any,
+) -> Any:
+    """A one-string-in, one-string-out function for the judges and the repair loop.
+
+    The same function serves both directions. With `cassettes` it replays; with `record_to` it
+    calls a live model and writes the answer down. That is what keeps a recording byte-identical
+    to the request the notebook will later make - both go through this, so the cassette key is
+    computed from exactly the same messages.
+    """
+
+    def ask(prompt: str) -> str:
+        messages = [{"role": "user", "content": prompt}]
+        if record_to is not None:
+            from aihe.cassettes import CassetteLibrary, key_for
+
+            library = CassetteLibrary(Path(record_to))
+            key = key_for(model, messages, None, **params)
+            # Recording is idempotent. Asking the same question twice in one run must not
+            # overwrite the first answer, because generated text is not reproducible even at
+            # temperature 0 - the second reply differs, the cassette changes underneath the
+            # first caller, and replay then walks a path that was never recorded.
+            if not library.has(key):
+                record(messages, record_to, model=model, **params)
+            return library.load(key)["response"]["text"]
+        return chat(messages, model=model, cassettes=cassettes, **params).text
+
+    return ask
 
 
 def parse_json_object(text: str) -> dict | None:

@@ -1,0 +1,21 @@
+id: "03-evals"
+title_he: "איך יודעים שזה עובד"
+title_en: "How you know it works"
+# The retrieval half needs no model at all. The judging half does, and its answers are recorded
+# in cassettes/ so the chapter runs offline and CI makes no network call.
+needs_llm: true
+ram_gb: 4
+est_minutes: 30
+datasets:
+  - "data/judge-cases.json"
+models:
+  - "Llama-3.2-3B-Instruct-Q4_K_M"
+  - "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+terms:
+  - recall
+  - precision
+  - nDCG
+  - MRR
+  - LLM-as-judge
+  - eval
+headline: "a holistic judge called the reply good on 100% of the answers that had lost the fact"

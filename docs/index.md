@@ -20,13 +20,13 @@
 
 | פרק | מה בונים | צריך מודל שפה |
 |---|---|---|
-| [01 — RAG מאפס](chapters/01-rag/chapter.ipynb) | `pipeline` שלם: `chunking`, `embeddings`, `BM25`, `RRF`, `reranker` | לא |
+| [**01 — RAG מאפס**](chapters/01-rag/chapter.ipynb) | `chunking`, `embeddings`, `BM25`, `RRF`, `reranker` — ומדידה של כל שלב | לא |
 | [**02 — RAG בעברית**](chapters/02-hebrew-rag/chapter.ipynb) | מורפולוגיה עברית, עלות `tokens`, ואיזה `embedding` באמת עובד | לא |
-| 03 — איך יודעים שזה עובד | `recall`, `precision`, `nDCG`, ואיפה `LLM-as-judge` משקר | כן |
-| 04 — הנדסת הקשר | למה לשמור הכל מנצח סיכום, ומה ה-`cache` עושה לזה | כן |
-| 05 — סוכנים | הלולאה, `tool schemas`, ולמה מודלים קטנים שוברים `JSON` | כן |
+| [**03 — איך יודעים שזה עובד**](chapters/03-evals/chapter.ipynb) | `recall`, `nDCG`, ואיפה `LLM-as-judge` מפסיד להטלת מטבע | מוקלט |
+| [**04 — הנדסת הקשר**](chapters/04-context/chapter.ipynb) | למה סיכום עולה כסף, ומה ה-`cache` עושה לזה | מוקלט |
+| [**05 — סוכנים**](chapters/05-agents/chapter.ipynb) | הלולאה, `tool schemas`, ולמה מודלים קטנים שוברים `JSON` | מוקלט |
 
-הפרקים נכתבים אחד אחרי השני. פרק שעדיין לא מקושר פשוט עוד לא נכתב, ולא תמצאו כאן תיקיה ריקה שמתחזה לפרק.
+חמשת הפרקים כתובים ורצים. ההרצה המלאה לוקחת כ-70 שניות ולא נוגעת ברשת.
 
 ## מה זה עולה
 

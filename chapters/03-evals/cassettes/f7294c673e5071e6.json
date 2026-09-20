@@ -1,0 +1,22 @@
+{
+  "key": "f7294c673e5071e6",
+  "model": "Llama-3.2-3B-Instruct-Q4_K_M",
+  "request": {
+    "messages": [
+      {
+        "content": "You are checking one specific fact. Answer with a single word, yes or no.\n\nQuestion asked: How often are encryption keys rotated?\nAnswer given: Keys live in a dedicated key service rather than on the machines serving requests, and rotation happens without downtime and without re-encrypting existing data.\n\nDoes the answer state that keys are rotated every ninety days? Answer yes or no.",
+        "role": "user"
+      }
+    ],
+    "params": {
+      "max_tokens": 64,
+      "seed": 7,
+      "temperature": 0.0
+    },
+    "tools": null
+  },
+  "response": {
+    "text": "No.",
+    "tool_calls": []
+  }
+}

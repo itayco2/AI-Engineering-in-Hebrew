@@ -1,0 +1,88 @@
+{
+ "cases": [
+  {
+   "question": "How long is an access token valid?",
+   "fact": "sixty minutes",
+   "criterion": "the token is valid for sixty minutes",
+   "kept": "An access token is valid for sixty minutes from the moment it is issued, so long-running jobs should renew rather than hold one open.",
+   "lost": "Access tokens are short lived by design. Long-running jobs are expected to renew them periodically rather than holding a single token open for the whole run."
+  },
+  {
+   "question": "What does AUTH-401 mean?",
+   "fact": "missing, malformed, or expired",
+   "criterion": "AUTH-401 covers a missing, malformed or expired token",
+   "kept": "AUTH-401 is returned when the Authorization header is missing, malformed, or expired. The body names which of the three it was.",
+   "lost": "AUTH-401 indicates that the request was not authorised. The response body explains which part of the header the service objected to, so check that first."
+  },
+  {
+   "question": "How many requests may a project make per minute?",
+   "fact": "six hundred",
+   "criterion": "the limit is six hundred requests per minute",
+   "kept": "The default budget is six hundred requests per minute per project, counted across every environment together.",
+   "lost": "Each project has a request budget measured in a sliding window and counted across all environments together. Exceeding it returns RATE-429 with a Retry-After header."
+  },
+  {
+   "question": "How long do refresh tokens last?",
+   "fact": "thirty days",
+   "criterion": "refresh tokens last thirty days",
+   "kept": "A refresh token lives for thirty days and is exchanged for a new access token at the renew endpoint.",
+   "lost": "Refresh tokens are long lived and single use: each renewal returns both a new access token and a new refresh token, and the old one is discarded immediately."
+  },
+  {
+   "question": "What is the clock tolerance before TS-999?",
+   "fact": "five minutes",
+   "criterion": "the tolerance is five minutes",
+   "kept": "TS-999 means the request timestamp differs from the service clock by more than five minutes.",
+   "lost": "TS-999 is a clock drift error. It is almost never a bug in your code - it is usually a container host or a suspended virtual machine whose clock has drifted."
+  },
+  {
+   "question": "How long is a deleted record recoverable?",
+   "fact": "thirty days",
+   "criterion": "a deleted record can be restored for thirty days",
+   "kept": "A deleted record is hidden immediately and destroyed thirty days later; it can be restored during that window.",
+   "lost": "Deletion is staged rather than immediate. There is a recovery window during which the record can be restored, after which restoration is genuinely impossible because it is removed from backups too."
+  },
+  {
+   "question": "How many records fit in one batch write?",
+   "fact": "five hundred",
+   "criterion": "a batch may contain up to five hundred records",
+   "kept": "Up to five hundred records can be submitted in a single call, and the whole submission either succeeds or fails.",
+   "lost": "Batch writes are all-or-nothing: there is no state in which only some of the records were written, and a submission over the limit is rejected rather than truncated."
+  },
+  {
+   "question": "How often are encryption keys rotated?",
+   "fact": "ninety days",
+   "criterion": "keys are rotated every ninety days",
+   "kept": "Keys are held in a separate service and rotated every ninety days, without downtime.",
+   "lost": "Keys live in a dedicated key service rather than on the machines serving requests, and rotation happens without downtime and without re-encrypting existing data."
+  },
+  {
+   "question": "How long is the audit trail retained?",
+   "fact": "four hundred days",
+   "criterion": "the audit trail is kept for four hundred days",
+   "kept": "Audit entries are retained for four hundred days and can be exported.",
+   "lost": "Every write, permission change and issued token is recorded with the actor, the time and the calling address. The trail is append only and cannot be edited through the API."
+  },
+  {
+   "question": "How many items does a listing return at a time?",
+   "fact": "one hundred",
+   "criterion": "a listing returns one hundred items at a time",
+   "kept": "Collections return at most one hundred items at a time, with a cursor for the next page.",
+   "lost": "Listings are paginated with a cursor that encodes a position rather than an offset, so records inserted mid-listing will not cause you to skip or repeat an item."
+  },
+  {
+   "question": "How long is an idempotency key remembered?",
+   "fact": "twenty four hours",
+   "criterion": "idempotency keys are remembered for twenty four hours",
+   "kept": "Idempotency keys are remembered for twenty four hours; the same key returns the original result.",
+   "lost": "Supply an idempotency key on any call that creates something. If the same key arrives again the original result is returned rather than a second object being made."
+  },
+  {
+   "question": "How much storage may one project hold?",
+   "fact": "fifty gigabytes",
+   "criterion": "a project may hold fifty gigabytes",
+   "kept": "A project may hold up to ten million records and fifty gigabytes in total.",
+   "lost": "Projects have both a record count limit and a total size limit. Reaching either stops writes but never stops reads, so the application keeps serving users while somebody fixes it."
+  }
+ ]
+}

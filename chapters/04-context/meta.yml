@@ -1,0 +1,19 @@
+id: "04-context"
+title_he: "הנדסת הקשר"
+title_en: "Context engineering"
+# The cache argument is decided by comparing bytes and needs no model at all. The recall probe
+# does, and its answers are recorded so the chapter runs offline.
+needs_llm: true
+ram_gb: 4
+est_minutes: 25
+datasets:
+  - "data/probes.json"
+models:
+  - "Llama-3.2-3B-Instruct-Q4_K_M"
+terms:
+  - context window
+  - cache
+  - prefix cache
+  - latency
+  - token
+headline: "summarising saved 67% of the characters and lost the fact every time, while a cap saved 47% and kept it"

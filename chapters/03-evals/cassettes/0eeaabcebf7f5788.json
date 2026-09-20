@@ -1,0 +1,22 @@
+{
+  "key": "0eeaabcebf7f5788",
+  "model": "Llama-3.2-3B-Instruct-Q4_K_M",
+  "request": {
+    "messages": [
+      {
+        "content": "You are checking one specific fact. Answer with a single word, yes or no.\n\nQuestion asked: What is the clock tolerance before TS-999?\nAnswer given: TS-999 means the request timestamp differs from the service clock by more than five minutes.\n\nDoes the answer state that the tolerance is five minutes? Answer yes or no.",
+        "role": "user"
+      }
+    ],
+    "params": {
+      "max_tokens": 64,
+      "seed": 7,
+      "temperature": 0.0
+    },
+    "tools": null
+  },
+  "response": {
+    "text": "No.",
+    "tool_calls": []
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "key": "752ebcdb9148a0b4",
+  "model": "Llama-3.2-3B-Instruct-Q4_K_M",
+  "request": {
+    "messages": [
+      {
+        "content": "You are checking one specific fact. Answer with a single word, yes or no.\n\nQuestion asked: How long is a deleted record recoverable?\nAnswer given: Deletion is staged rather than immediate. There is a recovery window during which the record can be restored, after which restoration is genuinely impossible because it is removed from backups too.\n\nDoes the answer state that a deleted record can be restored for thirty days? Answer yes or no.",
+        "role": "user"
+      }
+    ],
+    "params": {
+      "max_tokens": 64,
+      "seed": 7,
+      "temperature": 0.0
+    },
+    "tools": null
+  },
+  "response": {
+    "text": "No.",
+    "tool_calls": []
+  }
+}

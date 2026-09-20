@@ -99,6 +99,12 @@ it returns nothing.
 
 | dictabert-seg | `dictabert-seg` | — | A model name, so never translated |
 | transformers | `transformers` | — | The library's name, not the architecture; `טרנספורמר` is the architecture |
+| JSON | `JSON` | — | Format name |
+| null | `null` | ריק · אין | It is a literal value in the data, so it keeps its literal name |
+| prefix | `prefix` | תחילית | תחילית is used in chapter 02 for Hebrew morphology; the English when it means a cached prompt prefix |
+| repair loop | `repair loop` | לולאת תיקון | לולאת תיקון reads well in prose and is used there; the English names the pattern |
+| first try | `first try` | ניסיון ראשון | ניסיון ראשון in prose; the English when naming the measured column |
+| k | `k` | — | The cut-off in `recall@k`; a variable name, never translated |
 | HeQ | `HeQ` | — | The name of the Hebrew QA dataset; a proper noun |
 | BPE | `BPE` | קידוד זוגות בתים | Algorithm name, spoken as the acronym |
 | extractive | `extractive` | חילוצי | Describes a kind of QA dataset; the English is the term of art |

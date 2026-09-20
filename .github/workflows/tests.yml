@@ -11,13 +11,22 @@ on:
     branches: [main]
   pull_request:
 
+# Supersede in-flight runs for the same branch. Pushing three commits in a row used to start
+# three full matrices and pay for all of them; now only the newest survives.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   fast:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        python: ["3.10", "3.11", "3.12", "3.13"]
+        # Ends of the supported range on a push; the full matrix on pull requests, where a
+        # compatibility break is what review is for. A break can only live on a branch, not
+        # on main, and it costs half the minutes.
+        python: ${{ github.event_name == 'pull_request' && fromJSON('["3.10","3.11","3.12","3.13"]') || fromJSON('["3.10","3.13"]') }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

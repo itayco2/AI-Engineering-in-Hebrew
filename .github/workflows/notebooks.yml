@@ -12,7 +12,15 @@ name: notebooks
 on:
   push:
     branches: [main]
+    # Executing every notebook takes minutes. A change to prose alone cannot break one.
+    paths-ignore: ["**.md", "LICENSE", ".github/**", "!.github/workflows/notebooks.yml"]
   pull_request:
+
+# Supersede in-flight runs for the same branch. Pushing three commits in a row used to start
+# three full matrices and pay for all of them; now only the newest survives.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   execute:

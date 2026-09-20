@@ -12,6 +12,12 @@ permissions:
   pages: write
   id-token: write
 
+# Supersede in-flight runs for the same branch. Pushing three commits in a row used to start
+# three full matrices and pay for all of them; now only the newest survives.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest

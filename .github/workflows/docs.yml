@@ -32,7 +32,13 @@ jobs:
           path: ~/.cache/huggingface
           key: hf-docs-${{ hashFiles('chapters/*/meta.yml') }}
           restore-keys: hf-
-      - run: pip install -r requirements.txt -r requirements-test.txt -r requirements-docs.txt
+      - name: CPU-only torch, before anything else
+        # On Linux, plain `pip install torch` pulls the CUDA build and several gigabytes of
+        # NVIDIA libraries that a CPU-only course never uses. Five chapters of model cache on
+        # top of that overflowed the runner's 14 GB disk. Installing the CPU wheel first means
+        # the requirements below find torch already satisfied and never fetch the big one.
+        run: pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+      - run: pip install --no-cache-dir -r requirements.txt -r requirements-test.txt -r requirements-docs.txt
       - run: pip install -e . --no-deps
       - name: build, and fail on a broken internal link
         run: mkdocs build --strict

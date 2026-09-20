@@ -1,0 +1,15 @@
+# Notebooks are linted too: ruff reads .ipynb natively, and an unused import in a chapter is
+# something a reader sees.
+include = ["*.py", "*.ipynb"]
+line-length = 100
+
+[lint]
+select = ["F", "E", "W", "B", "UP", "I"]
+ignore = [
+  "E501",  # long lines are checked by the formatter's eye, not the linter
+  "E402",  # scripts insert the repo root on sys.path before importing aihe
+]
+
+[lint.per-file-ignores]
+# Notebooks import a few names for the reader to see and use in a later cell.
+"chapters/*/chapter.ipynb" = ["F401"]

@@ -45,7 +45,7 @@ def staircase(results: Mapping[str, float], k: int = 20, title: str = ""):
 
     colours = [MUTED] * max(len(values) - 1, 0) + [ACCENT]
     bars = ax.bar(names, values, color=colours[: len(values)], width=0.6)
-    for bar, value in zip(bars, values):
+    for bar, value in zip(bars, values, strict=True):
         ax.text(
             bar.get_x() + bar.get_width() / 2,
             value + worst * 0.03,
@@ -134,7 +134,7 @@ def climb(results: Mapping[str, float], label: str = "recall@1", title: str = ""
 
     colours = [MUTED] * max(len(values) - 1, 0) + [ACCENT]
     bars = ax.bar(names, values, color=colours[: len(values)], width=0.6)
-    for bar, value in zip(bars, values):
+    for bar, value in zip(bars, values, strict=True):
         ax.text(
             bar.get_x() + bar.get_width() / 2,
             value + best * 0.03,

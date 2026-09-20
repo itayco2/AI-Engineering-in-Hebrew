@@ -5,8 +5,17 @@ from __future__ import annotations
 import pytest
 
 from aihe.context import (
-    Turn, cache_hit_ratio, cap_tool_output, capped_history, common_prefix_length,
-    estimate_cost, keep_all, planted_fact_probe, prefix_is_stable, render, summarise_old,
+    Turn,
+    cache_hit_ratio,
+    cap_tool_output,
+    capped_history,
+    common_prefix_length,
+    estimate_cost,
+    keep_all,
+    planted_fact_probe,
+    prefix_is_stable,
+    render,
+    summarise_old,
 )
 
 CONVERSATION = [

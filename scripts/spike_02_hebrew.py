@@ -58,7 +58,7 @@ def main() -> int:
     # BM25 first: the baseline that needs no model at all, and the one chapter 02 argues
     # Hebrew morphology quietly breaks.
     bm25 = BM25([tokenize(p) for p in passages])
-    bm_eval = [(indices(bm25.search(tokenize(q), k=20)), {g}) for q, g in zip(questions, gold)]
+    bm_eval = [(indices(bm25.search(tokenize(q), k=20)), {g}) for q, g in zip(questions, gold, strict=True)]
     print(f"{'model':50s} {'kind':22s} {'r@1':>6s} {'r@5':>6s} {'MRR':>6s}")
     print("-" * 96)
     print(f"{'BM25 (no model at all)':50s} {'keyword baseline':22s} "

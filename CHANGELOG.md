@@ -4,7 +4,7 @@ Notable changes, newest first. This project follows [semantic versioning](https:
 
 ## [1.0.0] - 2026-09-20
 
-Five chapters, written, measured and executed on every push. 341 tests in about a fifth of a
+Five chapters, written, measured and executed on every push. 314 tests in about a fifth of a
 second; the whole course runs end to end in roughly seventy seconds and never touches the
 network.
 

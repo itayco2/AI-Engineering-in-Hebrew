@@ -40,7 +40,8 @@ def test_fixed_covers_the_whole_text():
     assert chunks[0].start == 0
     assert chunks[-1].end == len(PROSE)
     # consecutive chunks must not leave a gap
-    for earlier, later in zip(chunks, chunks[1:]):
+    # pairwise: the lengths differ by one by design, so strict= would be wrong here
+    for earlier, later in zip(chunks, chunks[1:]):  # noqa: B905
         assert later.start <= earlier.end
 
 

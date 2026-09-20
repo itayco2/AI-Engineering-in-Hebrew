@@ -96,7 +96,7 @@ def agreement(judgements: Sequence[Judgement], truth: Sequence[bool]) -> dict[st
     if len(judgements) != len(truth):
         raise ValueError(f"{len(judgements)} judgements for {len(truth)} known answers")
 
-    decided = [(j.value, t) for j, t in zip(judgements, truth) if j.decided]
+    decided = [(j.value, t) for j, t in zip(judgements, truth, strict=True) if j.decided]
     if not decided:
         return {"n": 0, "undecided": len(judgements), "accuracy": 0.0,
                 "said_yes": 0.0, "false_positive": 0.0, "false_negative": 0.0}

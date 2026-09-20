@@ -13,9 +13,11 @@ measurement, not an opinion.
 from __future__ import annotations
 
 import functools
+import json
 import re
 import unicodedata
 from collections.abc import Sequence
+from pathlib import Path
 
 # The letters Hebrew glues onto the front of a word: conjunction, prepositions, the definite
 # article, the relativiser. They stack, which is why `ובמסמכים` is `ו` + `ב` + `מסמכים`.
@@ -185,17 +187,14 @@ def token_cost(texts: Sequence[str], tokenizer) -> dict[str, float]:
     }
 
 
-def load_reference(path: str | "Path") -> dict[str, list[str]]:
+def load_reference(path: str | Path) -> dict[str, list[str]]:
     """Load a recorded DictaBERT segmentation.
 
     The model is about 700 MB, which would break the promise that a chapter runs on any
     laptop. Its output over the chapter's own text is recorded once and committed instead -
     the same reasoning as a cassette, applied to a model that is not a language model.
     """
-    import json
-    from pathlib import Path as _Path
-
-    return json.loads(_Path(path).read_text(encoding="utf-8"))["words"]
+    return json.loads(Path(path).read_text(encoding="utf-8"))["words"]
 
 
 def compare_to_reference(reference: dict[str, list[str]]) -> dict[str, object]:

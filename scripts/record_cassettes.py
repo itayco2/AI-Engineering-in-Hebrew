@@ -45,7 +45,7 @@ def record_04(chapter: Path) -> int:
     calls = 0
     for probe in plan["probes"]:
         turns = planted_fact_probe(probe["fact"], probe["question"], probe["filler"])
-        for name, history in (
+        for _name, history in (
             ("keep_all", turns),
             ("summarised", summarise_old(turns, keep_recent=4, summary=plan["summary"])),
             ("capped", capped_history(turns, limit=plan["cap"])),

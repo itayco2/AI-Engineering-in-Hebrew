@@ -69,7 +69,7 @@ def test_contextualising_puts_the_title_in_front(corpus):
     """The one-line fix the chapter is built around."""
     chunks = build_chunks(corpus)
     titles = corpus.titles
-    for chunk, enriched in zip(chunks, contextualise(chunks, corpus)):
+    for chunk, enriched in zip(chunks, contextualise(chunks, corpus), strict=True):
         assert enriched.startswith(titles[chunk.doc_id])
         assert chunk.text in enriched
 
@@ -77,4 +77,4 @@ def test_contextualising_puts_the_title_in_front(corpus):
 def test_contextualising_actually_adds_words(corpus):
     chunks = build_chunks(corpus)
     rich = contextualise(chunks, corpus)
-    assert all(len(r) > len(c.text) for r, c in zip(rich, chunks))
+    assert all(len(r) > len(c.text) for r, c in zip(rich, chunks, strict=True))

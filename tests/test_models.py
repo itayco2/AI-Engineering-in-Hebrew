@@ -1,7 +1,6 @@
 """The client interface, the cassette library, and the JSON salvage that chapter 05 needs."""
 
 import json
-import os
 
 import pytest
 

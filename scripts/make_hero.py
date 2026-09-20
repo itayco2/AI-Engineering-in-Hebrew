@@ -18,8 +18,13 @@ sys.path.insert(0, str(ROOT))
 from aihe import viz
 from aihe.embeddings import cross_encoder_scorer, encode
 from aihe.pipeline import (
-    build_chunks, contextualise, dense_retriever, evaluate, hybrid_retriever,
-    load_corpus, reranked_retriever,
+    build_chunks,
+    contextualise,
+    dense_retriever,
+    evaluate,
+    hybrid_retriever,
+    load_corpus,
+    reranked_retriever,
 )
 from aihe.retrieval import BM25, tokenize
 

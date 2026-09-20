@@ -33,7 +33,7 @@ def main() -> int:
     # 1. the package
     try:
         import aihe
-        from aihe.retrieval import BM25, rrf, tokenize
+        from aihe.retrieval import rrf
 
         assert round(dict(rrf([[0], [1, 2, 0]]))[0], 4) == round(1 / 61 + 1 / 63, 4)
         _report(PASS, "package imports", f"aihe {aihe.__version__}")

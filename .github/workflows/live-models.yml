@@ -27,7 +27,13 @@ jobs:
             ~/.ollama
           key: live-${{ hashFiles('chapters/*/meta.yml') }}
           restore-keys: live-
-      - run: pip install -r requirements.txt -r requirements-test.txt -r requirements-notebooks.txt
+      - name: CPU-only torch, before anything else
+        # On Linux, plain `pip install torch` pulls the CUDA build and several gigabytes of
+        # NVIDIA libraries that a CPU-only course never uses. Five chapters of model cache on
+        # top of that overflowed the runner's 14 GB disk. Installing the CPU wheel first means
+        # the requirements below find torch already satisfied and never fetch the big one.
+        run: pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+      - run: pip install --no-cache-dir -r requirements.txt -r requirements-test.txt -r requirements-notebooks.txt
       - run: pip install -e . --no-deps
       - name: start Ollama and pull a small model
         run: |

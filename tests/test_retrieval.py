@@ -1,6 +1,5 @@
 """Retrieval: BM25 behaviour, cosine correctness, and the published RRF worked example."""
 
-import math
 
 import pytest
 

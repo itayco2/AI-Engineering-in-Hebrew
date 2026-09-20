@@ -5,7 +5,13 @@ from __future__ import annotations
 import pytest
 
 from aihe.judge import (
-    Judgement, agreement, binary_judge, contains_fact, holistic_judge, read_score, read_yes_no,
+    Judgement,
+    agreement,
+    binary_judge,
+    contains_fact,
+    holistic_judge,
+    read_score,
+    read_yes_no,
 )
 
 

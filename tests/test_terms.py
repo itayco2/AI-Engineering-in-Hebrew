@@ -11,7 +11,6 @@ digits, slashes - is an identifier rather than a term and is left alone.
 from __future__ import annotations
 
 import re
-from pathlib import Path
 
 from tests.conftest import ROOT, markdown_cells, notebook_of
 

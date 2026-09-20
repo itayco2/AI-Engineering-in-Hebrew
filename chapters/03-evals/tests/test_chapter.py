@@ -5,8 +5,6 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-import pytest
-
 from aihe.cassettes import CassetteLibrary
 from aihe.judge import build_cases, contains_fact
 from aihe.metrics import ndcg_at_k, recall_at_k

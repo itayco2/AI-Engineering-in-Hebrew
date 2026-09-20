@@ -1,0 +1,24 @@
+# Keeps the notebooks honest as well as the package. ruff reads .ipynb natively, which is how
+# an import that a chapter no longer uses gets caught before a reader sees it.
+name: lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ruff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install ruff==0.16.8
+      - run: ruff check aihe scripts tests chapters
